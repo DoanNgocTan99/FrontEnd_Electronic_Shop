@@ -1,0 +1,117 @@
+.top-bar {
+  width: 100%;
+  height: 100px;
+  background-color: white;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 12px;
+
+  &__wrapper {
+    height: 100%;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    display: block;
+    color: #3490de;
+    text-decoration: none;
+    margin-left: 28px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icons {
+    position: relative;
+    cursor: pointer;
+    margin-right: 56px;
+    color: #555;
+    font-size: 24px;
+  }
+
+  &__icon-badge {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: -4px;
+    right: -7px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10px;
+  }
+
+  &__avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  &__button {
+    height: 50px;
+    width: 140px;
+    padding: 14px 25px;
+    background-color: #349eff;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 10px;
+    border: none;
+    margin-right: 56px;
+
+    &:hover {
+      background-color: #62b4ff;
+    }
+  }
+}
+
+.dialog {
+  &__close-button {
+    position: 'absolute';
+    align-self: flex-end;
+    top: 4px;
+    right: 4px;
+    color: grey;
+    z-index: 1;
+  }
+}
+
+
+@media (max-width: 764px) {
+ .top-bar__logo{
+   font-size:23px;
+ }
+ .top-bar__wrapper{
+   padding:0px;
+ }
+ .top-bar__right{
+   margin-left: 20px;
+ }
+ .top-bar__button{
+  height: 39px;
+  width: 99px;
+  padding: 13px 0px;
+  line-height: 16px;
+  margin-right: 25px;
+ }
+ .top-bar__icons{
+   margin-right: 20px;
+ }
+ .top-bar__avatar{
+   margin-right:11px;
+ }
+}

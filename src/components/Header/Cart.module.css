@@ -1,0 +1,117 @@
+.navbar__cart {
+    /* background: #fff; */
+    border: none;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    float: right;
+    margin-top: 0px;
+    position: relative;
+  }
+  
+  .navbar__cart:hover {
+    opacity: 0.75;
+  }
+  
+  .cart__title {
+    font-size: 30px;
+    font-weight: bold;
+    color: var(--dark-color);
+  }
+  
+  .cart__image {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+  
+  .cart__counter {
+    height: 40px;
+    width: 40px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 50%;
+    color: var(--dark-color);
+    background: var(--light-color);
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .navbar__cart i{
+    font-size:25px;
+    color:#33CCCC;
+  }
+  .cart__counter{
+    position: absolute;
+    top: 3px;
+    left: 23px;
+    font-size: 15px;
+    background-color: #33CCCC;
+    width: 16px;
+    height: 14px;
+    color:#fff;
+  }
+  .img{
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+    margin-left: 28px;
+  }
+  .navbar_right{
+    display: flex;
+  }
+  .nav__itemsmenu{
+    position: absolute;
+    background-color: #fff;
+    top: 82%;
+    right: 29px;
+    border-radius: 2px;
+    width: 150px;
+    z-index: 1;
+    padding-left: 0px;
+    list-style: none;
+    display: none;
+    animation: nav__notifyapp ease-in 0.25s;
+    box-shadow: -30px 30px 20px rgba(0, 0, 0, 0.1);
+  }
+  .nav__menuitems{
+    padding: 10px;
+  }
+  .nav__itemsaccount:hover .nav__itemsmenu{
+    display: block;
+}
+.nav__menuitems::before{
+  content: "";
+  border-width: 10px ;
+  border-style:  solid ;
+  border-color: transparent transparent var(--white-color) transparent;
+  position: absolute;
+  right: 8px;
+  top:-20px
+}
+.nav__menuitems::after{
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  top: -9px;
+  width: 90px;
+  height: 12px;   
+}
+.nav__itemsaccount{
+  list-style: none;
+  
+}
+.nav__menuitems:hover{
+  background-color:#f8f8f8;
+  cursor: pointer;
+}
+
+/* /* Reponsive * */
+
+
+
+
+

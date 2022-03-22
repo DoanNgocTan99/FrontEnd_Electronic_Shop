@@ -1,0 +1,30 @@
+.ErrorPage{
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: -22px;
+}
+.heading{
+    margin-bottom: 20px;
+    font-family: 'Courgette';
+    font-size:90px;
+}
+.title{
+    font-family: 'Libre Baskerville', serif;
+    font-size: 24px;
+    /* font-weight: 600; */
+}
+.btn_homepage{
+    margin-top: 22px;
+    text-decoration: none;
+    padding : 10px 20px;
+    background-color:#349db3 ;
+    color:#fff;
+    border-radius:25px;
+    /* font-weight: 600; */
+    font-family: 'Libre Baskerville', serif;
+    
+}

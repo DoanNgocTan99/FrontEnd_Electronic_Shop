@@ -1,0 +1,77 @@
+.category {
+  flex: 4;
+  padding: 30px 24px 24px 24px;
+  color: #455560;
+
+  &__header {
+    margin-bottom: 30px;
+    font-size: 2rem;
+  }
+
+  &__card {
+    padding: 30px;
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 15px;
+
+    & > div ~ div {
+      margin-top: 30px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+  }
+
+  &__edit-button {
+    padding: 3px 8px;
+    margin-right: 10px;
+    background-color: #019707;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #4caf50;
+    }
+  }
+
+  &__delete-icon {
+    color: #ff4a6b;
+    cursor: pointer;
+  }
+
+  &__add {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 16px 0;
+    background-color: transparent;
+    border: none;
+    color: #349eff;
+    cursor: pointer;
+
+    &__title {
+      font-size: 15px;
+    }
+  }
+
+  &__add-icon {
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 764px) {
+  .category__card{
+    padding-right: 18px;
+    width: 59%;
+  }
+}

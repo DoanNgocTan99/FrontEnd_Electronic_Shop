@@ -1,0 +1,55 @@
+.dashboard {
+  flex: 4;
+  padding: 30px 24px 24px 24px;
+  color: #455560;
+
+  &__header {
+    margin-bottom: 30px;
+    text-transform: capitalize;
+    font-size: 2rem;
+  }
+
+  &__card {
+    padding: 30px;
+    background-color: white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 15px;
+
+    &__header {
+      text-transform: capitalize;
+    }
+
+    & > div ~ div {
+      margin-top: 30px;
+    }
+
+    &__footer {
+      text-align: center;
+      text-transform: capitalize;
+      margin-top: 24px;
+
+      & > a {
+        text-decoration: none;
+        font-weight: 600;
+
+        &:visited {
+          color: #455560;
+        }
+      }
+    }
+  }
+
+  &__full-height {
+    height: 100%;
+  }
+}
+
+@media (max-width: 764px) {
+  .dashboard{
+    width:77%;
+    padding: 30px 15px 24px 15px;
+  }
+}
+// .dashboard__card.dashboard__full-height {
+//   height: calc(100% - 24px);
+// }

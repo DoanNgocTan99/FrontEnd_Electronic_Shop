@@ -1,0 +1,52 @@
+.filter-products {
+  padding: 0 8px;
+
+  &__box {
+    padding: 10px 8px;
+    width: 180px;
+    background-color: #f8f8f8;
+    border: 2px solid #555;
+    cursor: pointer;
+    color: #455560;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 15px;
+    outline: none;
+  }
+
+  &__input {
+    padding: 10px 8px;
+    width: 326px;
+    background-color: #f8f8f8;
+    border: 2px solid #555;
+    color: #455560;
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 15px;
+    outline: none;
+  }
+
+  &__options {
+    background-color: white;
+    font-weight: 700;
+    font-size: 14px;
+    color: #455560;
+  }
+}
+
+@media(min-width :768px) and (max-width:1024px) {
+ .filter-products__box{
+   width:133px;
+ }
+ .filter-products__input{
+   width:224px;
+ }
+}
+@media (max-width: 764px) {
+  .filter-products__box{
+   margin-bottom: 20px;
+  }
+  .filter-products__input{
+    width:210px;
+  }
+}

@@ -1,0 +1,60 @@
+:root{
+    --primary-color:#333e48;
+    --white-color:#fff;
+    --black-color:#000;
+    --text-color:#333;
+    --boder-color:#dbdbdb;
+    --navbar-height:34px;
+    --header-height:120px;
+    --header-search:calc(var(--header-height) - var(--navbar-height))
+}
+.navBar {
+    padding: 20px 30px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+     justify-content: space-between; 
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background-color: transparent;
+    /* box-shadow: rgb(0 0 0 / 6%) 0px 1px 2px; */
+    transition: all 0.3s ease 0s;
+}
+.navBar.active{
+    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 6%) 0px 1px 2px;
+}
+
+.header {
+    line-height: 43px;
+    color: #33CCCC;
+    /* color: #00CC99; */
+    /* #00CC99 */
+    font-size:30px;
+    margin-left:23px;
+    text-decoration: none;
+    font-weight: 600;
+    font-family: "Dancing Script";
+}
+
+
+/* Reponsive */
+@media(min-width :768px) and (max-width:1024px) {
+   .navBar{
+       width:100%;
+   }
+   
+}
+
+@media(max-width :764px){
+    .navBar{
+        width: 82%;
+    }
+    .header{
+        margin-left: 15px;
+    }
+}
