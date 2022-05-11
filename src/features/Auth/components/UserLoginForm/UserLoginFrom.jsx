@@ -102,7 +102,7 @@ function UserLoginForm({ onSubmit = null }) {
           <div className={styles.social_media}>
             <FacebookLogin
               appId={process.env.REACT_APP_FACEBOOK_APP_ID}
-              autoLoad={true}
+              autoLoad={false}
               fields="name,picture"
               callback={responseFacebook}
               icon="fab fa-facebook-f"

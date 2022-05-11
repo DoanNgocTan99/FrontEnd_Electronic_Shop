@@ -47,13 +47,13 @@ function ProductDetail(props) {
                     <div className={styles.grid__column5  }>
                         <div className={styles.back_btn}>
                             <Link to={"/"} className= {styles.btn_back}>
-                            <i class="fas fa-arrow-left"></i>
+                            <i className="fas fa-arrow-left"></i>
                             Back</Link>
                         </div>
                         <img src={product?.path} alt="" className={styles.product_img} />
                     </div>
                     <div className={styles.grid__column5} ><ProductInfor/></div>
-                    <div className= {styles.RelatedWapper}><ProductRelated/></div>
+                    <div className={styles.RelatedWapper} ><ProductRelated /></div>
                 </div>
          </div>
          <Footer/>

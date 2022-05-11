@@ -16,7 +16,7 @@ const productApi = {
     const productList = await axiosClient.get('/Product', {
       params: newParams,
     });
-    const count = await axiosClient.get('/products/count', {
+    const count = await axiosClient.get('/Product/count', {
       params: newParams,
     });
 
@@ -32,12 +32,12 @@ const productApi = {
   },
 
   get(id) {
-    const url = `/products/${id}`;
+    const url = `/Product/${id}`;
     return axiosClient.get(url);
   },
 
   add(data) {
-    const url = '/products';
+    const url = '/Product';
     const token = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('access-token')}`,
@@ -47,7 +47,7 @@ const productApi = {
   },
 
   update(data) {
-    const url = `/products/${data.id}`;
+    const url = `/Product/${data.id}`;
     const token = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('access-token')}`,
@@ -57,7 +57,7 @@ const productApi = {
   },
 
   remove(id) {
-    const url = `/products/${id}`;
+    const url = `/Product/${id}`;
     const token = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('access-token')}`,

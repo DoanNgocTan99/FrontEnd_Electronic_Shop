@@ -32,8 +32,6 @@ function ProductInfor(props) {
       });
     }
   }, [id]);
-  console.log("PRODUCT INFO");
-  console.log(product);
   const handleAddToCartForm = ({ quantity }) => {
     const action = addToCart({
       id: product.id,
@@ -58,11 +56,8 @@ function ProductInfor(props) {
         </Alert>
       </Snackbar>
       <h4 className={styles.ProductName}>{product?.name}</h4>
-      <h5 className={styles.ProductBand}>
-        {/* <i class="fab fa-apple"></i> */}
-        {product?.brand}
-      </h5>
-      <p className={styles.ProductDescription}>{product?.productDescription}</p>
+      <h5 className={styles.ProductBand}>{product?.brand}</h5>
+      <p className={styles.ProductDescription}>{product?.description}</p>
       <div className={styles.ProductTable}>
         <div className={styles.ProductTableRow}>
           <span className={styles.ProductItem}>Brand</span>
@@ -70,17 +65,15 @@ function ProductInfor(props) {
         </div>
         <div className={styles.ProductTableRow}>
           <span className={styles.ProductItem}>Loại</span>
-          <span className={styles.ProductItem}>
-            {/* {product?.category.categoryName} */}
-          </span>
+          <span className={styles.ProductItem}>{product?.categoryName}</span>
         </div>
         <div className={styles.ProductTableRow}>
           <span className={styles.ProductItem}>Nước</span>
-          <span className={styles.ProductItem}>USA</span>
+          <span className={styles.ProductItem}>{product?.origin}</span>
         </div>
         <div className={styles.ProductTableRow}>
           <span className={styles.ProductItem}>Số lượng mua</span>
-          <span className={styles.ProductItem}>23.000</span>
+          <span className={styles.ProductItem}>{product?.views}</span>
         </div>
       </div>
       <div className={styles.ProductCartWapper}>

@@ -14,6 +14,7 @@ function NavBar() {
 
   const cartItemsCount = useSelector(cartItemsCountSelector);
   const avatarUrl = useSelector((state) => state.admin.avatarUrl);
+  const isLogin = useSelector(state => state.admin.current) === null ? false : true
 
   const changeBackgroundColor = () => {
     if (window.scrollY >= 400) {
@@ -55,15 +56,19 @@ function NavBar() {
             className={styles.img}
           />
           <ul className={styles.nav__itemsmenu}>
-            <li className={styles.nav__menuitems}>
-              <div href="">Tài khoản của tôi</div>
-            </li>
-            <li className={styles.nav__menuitems}>
+            {isLogin &&
+              <>
+              <li className={styles.nav__menuitems}>
+                <div href="">Tài khoản của tôi</div>
+              </li>
+              <li className={styles.nav__menuitems}>
               <div href="">Đơn mua</div>
             </li>
+              </>
+              }
             <li className={styles.nav__menuitems}>
-              <div onClick={handleLogout} href="">
-                Đăng xuẩt
+              <div onClick={handleLogout}>
+                {isLogin ? "Đăng xuất" : "Đăng nhập"}
               </div>
             </li>
           </ul>

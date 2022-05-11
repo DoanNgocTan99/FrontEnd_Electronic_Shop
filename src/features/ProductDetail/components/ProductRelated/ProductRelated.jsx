@@ -12,7 +12,8 @@ function ProductRelated(props) {
   };
   useEffect(() => {
     const paramsString = queryString.stringify(filters);
-    const getApi = `https://api-mts.herokuapp.com/products?${paramsString}`;
+    // const getApi = `https://api-mts.herokuapp.com/products?${paramsString}`;
+    const getApi = `https://localhost:44306/Product/roductRelated`;
     axios.get(getApi).then((response) => {
       setProducts(response.data);
     });
@@ -31,14 +32,14 @@ function ProductRelated(props) {
                 >
                   <div
                     className={styles.home__productitemsimg}
-                    style={{ backgroundImage: `url(${item.productThumbnail})` }}
+                    style={{ backgroundImage: `url(${item.path})` }}
                   ></div>
                   <h4 className={styles.home__productitemsname}>
-                    {item.productName}
+                    {item.name}
                   </h4>
                   <div className={styles.home__productprice}>
                     <span className={styles.home__productitemsprice}>
-                      {formatPrice(item.salePrice)}
+                      {formatPrice(item.product_Price)}
                     </span>
                     <div className={styles.btn_cart}>
                       <i class="fas fa-search"></i>
