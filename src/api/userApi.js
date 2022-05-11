@@ -2,7 +2,8 @@ import axiosClient from './axiosClient';
 
 const userApi = {
   login(data) {
-    const url = '/auth/local';
+    console.log(data);
+    const url = '/Accounts/login';
     return axiosClient.post(url, data);
   },
 };

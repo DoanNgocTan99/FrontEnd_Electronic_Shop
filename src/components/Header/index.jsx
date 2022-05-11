@@ -34,7 +34,7 @@ function NavBar() {
   return (
     <div className={navBar ? 'navBar active ' : 'navBar '}>
       <Link to={'/'} className="header">
-        PickBazar
+        Electronic Shop
       </Link>
       <div className={styles.navbar_right}>
         <Link to="/cart">

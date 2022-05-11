@@ -238,6 +238,7 @@
   padding-top: 100%;
   background-size: contain;
   background-position: center;
+  background-repeat: no-repeat;
 }
 .home__productitemsname {
   padding: 0px 10px;

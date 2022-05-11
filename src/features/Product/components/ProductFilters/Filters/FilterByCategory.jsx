@@ -15,8 +15,8 @@ function FilterByCategory({ onChange }) {
         setCategoryList(
           list.map((x) => ({
             id: x.id,
-            name: x.categoryName,
-            img:x.categoryThumbnail
+            name: x.name,
+            img:x.imagePath
           }))
         );
       } catch (error) {

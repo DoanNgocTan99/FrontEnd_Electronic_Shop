@@ -13,7 +13,7 @@ function Footer(props) {
                                 <Link to ="" className={styles.footer__link}>Trung tâm trợ giúp</Link>
                             </li>
                             <li className={styles.footer__items}>
-                                <Link to ="" className={styles.footer__link}>Multishop</Link>
+                                <Link to ="" className={styles.footer__link}>Electronic Shop</Link>
                             </li>
                             <li className={styles.footer__items}>    
                                 <Link to ="" className={styles.footer__link}>Hướng dẫn mua hàng</Link>

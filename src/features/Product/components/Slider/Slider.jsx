@@ -6,7 +6,7 @@ function Slider(props) {
         <figure>
             <div className={styles.sliderImg}>
             <div className={styles.modal}>
-                <div className={styles.header}>Multishop</div>
+                <div className={styles.header}>Electronic Shop</div>
                 <div className={styles.title}>Build Your Dream </div>
             </div>
             </div>

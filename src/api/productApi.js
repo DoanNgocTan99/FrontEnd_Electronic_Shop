@@ -13,7 +13,7 @@ const productApi = {
     delete newParams._page;
 
     //Fetch product list + count
-    const productList = await axiosClient.get('/products', {
+    const productList = await axiosClient.get('/Product', {
       params: newParams,
     });
     const count = await axiosClient.get('/products/count', {

@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import axios from 'axios';
 import styles from './product.module.css';
 // import SliderBar from './components/Nav'
 import ProductList from './components/ProductList';
@@ -23,19 +24,25 @@ function Product(props) {
     limit: 12,
     total: 12,
   });
-  useEffect(() => {
-    const token = localStorage.getItem(StorageUser.TOKEN);
-    if (!token) {
-      history.replace('/login1');
-    }
-  });
+  
   const [loading, setLoading] = useState(false);
+  const [product, setProduct] = useState([]);
+  // useEffect(() => {
+  //   const getApi = 'https://electronic-api.azurewebsites.net/Product'
+  //   axios.get(getApi).then((response) => {
+  //     setProduct(response.data.results);
+  //     console.log("response");
+  //   });
+  // }, []);
   useEffect(() => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    const getApi = 'https://localhost:44306/Product';
+    axios.get(getApi).then((response) => {
+      setProduct(response.data);
+      console.log(response.data);
+
+    });
   }, []);
+
   const queryParams = useMemo(() => {
     const params = queryString.parse(location.search);
     return {
@@ -104,7 +111,7 @@ function Product(props) {
                 {loading ? (
                   <ProductSkeletonList length={12} />
                 ) : (
-                  <ProductList data={productList} />
+                  <ProductList data={product} />
                 )}
               </div>
               <div className="product__pagination">

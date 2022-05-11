@@ -40,7 +40,7 @@ function UserLoginForm({ onSubmit = null }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const schema = yup.object().shape({
-    identifier: yup
+    email: yup
       .string()
       .required('Please enter your email.')
       .email('Please enter a valid email address.'),
@@ -49,7 +49,7 @@ function UserLoginForm({ onSubmit = null }) {
 
   const form = useForm({
     defaultValues: {
-      identifier: '',
+      email: '',
       password: '',
     },
     resolver: yupResolver(schema),
@@ -81,7 +81,7 @@ function UserLoginForm({ onSubmit = null }) {
       >
         <div className={styles.form_inner}>
           <h2 className={styles.title}>Login</h2>
-          <InputField name="identifier" label="Email" form={form} />
+          <InputField name="email" label="Email" form={form} />
           <PasswordField name="password" label="Password" form={form} />
           <Button
             className={classes.submit}

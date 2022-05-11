@@ -16,6 +16,7 @@ function Login(props) {
   const handleSubmit = async (values) => {
     try {
       const action = loginUser(values);
+      console.log(values);
       const resultAction = await dispatch(action);
       unwrapResult(resultAction);
 

@@ -26,13 +26,14 @@ function ProductInfor(props) {
 
   useEffect(() => {
     if (id) {
-      const getApi = `https://api-mts.herokuapp.com/products/${id}`;
+      const getApi = `https://localhost:44306/Product/${id}`;
       axios.get(getApi).then((response) => {
         setProduct(response.data);
       });
     }
   }, [id]);
-
+  console.log("PRODUCT INFO");
+  console.log(product);
   const handleAddToCartForm = ({ quantity }) => {
     const action = addToCart({
       id: product.id,
@@ -56,7 +57,7 @@ function ProductInfor(props) {
           Thêm vào giỏ hàng thành công
         </Alert>
       </Snackbar>
-      <h4 className={styles.ProductName}>{product?.productName}</h4>
+      <h4 className={styles.ProductName}>{product?.name}</h4>
       <h5 className={styles.ProductBand}>
         {/* <i class="fab fa-apple"></i> */}
         {product?.brand}
@@ -70,7 +71,7 @@ function ProductInfor(props) {
         <div className={styles.ProductTableRow}>
           <span className={styles.ProductItem}>Loại</span>
           <span className={styles.ProductItem}>
-            {product?.category.categoryName}
+            {/* {product?.category.categoryName} */}
           </span>
         </div>
         <div className={styles.ProductTableRow}>
@@ -84,7 +85,7 @@ function ProductInfor(props) {
       </div>
       <div className={styles.ProductCartWapper}>
         <div className={styles.ProductPriceWapper}>
-          {formatPrice(product?.salePrice)}
+          {formatPrice(product?.product_Price)}
         </div>
         <AddToCartForm onSubmit={handleAddToCartForm} />
       </div>

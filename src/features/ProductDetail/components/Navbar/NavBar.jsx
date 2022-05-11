@@ -15,7 +15,7 @@ function NavBar(props) {
   return (
     <div className={styles.navBar}>
       <Link to={'/'} className={styles.header}>
-        PickBazar
+        Electronic Shop
       </Link>
       <div className={styles.navbar_right}>
         <Link to="/cart">

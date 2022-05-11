@@ -8,11 +8,8 @@ import Footer from 'features/Product/components/Footer/Footer';
 import ClipLoader from "react-spinners/ClipLoader";
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useHistory} from 'react-router-dom';
-import StorageUser from 'constants/storage-user';
 function ProductDetail(props) {
     const [loading, setLoading] = useState(false);
-    const history = useHistory();
     useEffect(() => {
      setLoading(true)
      setTimeout(()=>{
@@ -21,21 +18,15 @@ function ProductDetail(props) {
     }, [])
     const [product, setproduct] = useState(null);
     const { id } = useParams();
-    useEffect(() => {
-        const token = localStorage.getItem(StorageUser.TOKEN);
-        if (!token) {
-          history.replace('/login1');
-        }
-      });
    
   useEffect(() => {
     if (id) {
-        const getApi = `https://api-mts.herokuapp.com/products/${id}`;
+        const getApi = `https://localhost:44306/Product/${id}`;
         axios.get(getApi).then((response) => {
             setproduct(response.data);
         });
-    }
-}, [id]);
+      }
+  }, [id]);
     return (
         <React.Fragment>
              {
@@ -59,7 +50,7 @@ function ProductDetail(props) {
                             <i class="fas fa-arrow-left"></i>
                             Back</Link>
                         </div>
-                        <img src={product?.productThumbnail} alt="" className={styles.product_img} />
+                        <img src={product?.path} alt="" className={styles.product_img} />
                     </div>
                     <div className={styles.grid__column5} ><ProductInfor/></div>
                     <div className= {styles.RelatedWapper}><ProductRelated/></div>
