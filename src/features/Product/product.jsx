@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import styles from './product.module.css';
 // import SliderBar from './components/Nav'
@@ -15,75 +15,47 @@ import ProductFilters from './components/ProductFilters/ProductFilter';
 import ClipLoader from 'react-spinners/ClipLoader';
 import ProductSkeletonList from './ProductSkeletonList';
 import StorageUser from 'constants/storage-user';
+import { Provider } from 'react-redux';
+
+const limit = 15;
+
 function Product(props) {
-  const location = useLocation();
-  const history = useHistory();
   const [productList, setProductList] = useState();
-  const [pagination, setPagination] = useState({
-    page: 1,
-    limit: 12,
-    total: 12,
-  });
-  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productFilter, setProductFilter] = useState([]);
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState([]);
-  // useEffect(() => {
-  //   const getApi = 'https://electronic-api.azurewebsites.net/Product'
-  //   axios.get(getApi).then((response) => {
-  //     setProduct(response.data.results);
-  //     console.log("response");
-  //   });
-  // }, []);
+  const pageCount = Math.ceil(productFilter.length / limit);
+
   useEffect(() => {
     const getApi = 'https://localhost:44306/Product';
     axios.get(getApi).then((response) => {
       setProduct(response.data);
-      console.log(response.data);
-
+      setProductFilter(response.data);
     });
   }, []);
 
-  const queryParams = useMemo(() => {
-    const params = queryString.parse(location.search);
-    return {
-      ...params,
-      _page: Number.parseInt(params._page) || 1,
-      _limit: Number.parseInt(params._limit) || 20,
-    };
-  }, [location.search]);
+  const handleChange = useCallback(
+    (_, value) => {
+      const newProductList = productFilter.slice(
+        (value - 1) * limit,
+        (value - 1) * limit + limit
+      );
+      setProductList(newProductList);
+      setCurrentPage(value);
+    },
+    [productFilter]
+  );
 
   useEffect(() => {
-    (async () => {
-      try {
-        const { data, pagination } = await productApi.getAll(queryParams);
-        setProductList(data);
-        setPagination(pagination);
-      } catch (error) {
-        console.log('Failed to fetch product list: ', error);
-      }
-      setLoading(false);
-    })();
-  }, [queryParams]);
+    handleChange(null, 1);
+  }, [productFilter, handleChange]);
 
-  const handlePageChange = (e, page) => {
-    const filters = {
-      ...queryParams,
-      _page: page,
-    };
-    history.push({
-      pathname: history.location.pathname,
-      search: queryString.stringify(filters),
-    });
-  };
   const handleFiltersChange = (newFilters) => {
-    const filters = {
-      ...queryParams,
-      ...newFilters,
-    };
-    history.push({
-      pathname: history.location.pathname,
-      search: queryString.stringify(filters),
-    });
+    const productAfterFilter = product.filter(
+      (prd) => prd.categoryId === newFilters
+    );
+    setProductFilter(productAfterFilter);
   };
 
   return (
@@ -111,16 +83,28 @@ function Product(props) {
                 {loading ? (
                   <ProductSkeletonList length={12} />
                 ) : (
-                  <ProductList data={product} />
+                  <ProductList data={productList} />
                 )}
               </div>
               <div className="product__pagination">
-                <Pagination
-                  color="primary"
-                  count={Math.ceil(pagination.total / pagination.limit)}
-                  page={pagination.page}
-                  onChange={handlePageChange}
-                />
+                {/* {pageCount > 0  && (
+                  <Pagination
+                    color="primary"
+                    count={Math.ceil(productFilter.length / limit)}
+                    page={currentPage}
+                    onChange={handleChange}
+                  />
+                )} */}
+                {pageCount > 0 ? (
+                  <Pagination
+                    color="primary"
+                    count={Math.ceil(productFilter.length / limit)}
+                    page={currentPage}
+                    onChange={handleChange}
+                  />
+                ) : (
+                  'Chưa có sản phẩm nào!!!'
+                )}
               </div>
             </div>
           </div>

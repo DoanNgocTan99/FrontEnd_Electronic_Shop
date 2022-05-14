@@ -30,7 +30,7 @@ ProductQuantity.propTypes = {
 
 function ProductQuantity({ item = {}, onChange = null }) {
   const classes = useStyles();
-  const [quantityTerm, setQuantityTerm] = useState(item.quantity);
+  const [quantityTerm, setQuantityTerm] = useState(item.count);
   const typingTimeoutRef = useRef();
 
   const handleQuantity = (value) => {

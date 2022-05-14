@@ -7,8 +7,9 @@ import {
   Typography,
 } from '@material-ui/core';
 import { DeleteOutlined } from '@material-ui/icons';
+import axios from 'axios';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { formatPrice } from 'utils';
 import ProductQuantity from './ProductQuantity';
@@ -64,8 +65,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function DetailCart({ onRemove = null, onChange = null }) {
-  const cartItems = useSelector((state) => state.cart.cartItems);
+  const [cartItems, setCartItems] = useState([]);
   const classes = useStyles();
+
+  useEffect(() => {
+    const getApi = `https://localhost:44306/Cart/GetListCartByIdUser/7`;
+    axios.get(getApi).then((response) => {
+      setCartItems(response.data);
+      console.log(response.data);
+    });
+  }, []);
+
+  console.log(cartItems);
 
   const handleRemoveItem = (productId) => {
     if (!onRemove) return;
@@ -84,19 +95,13 @@ function DetailCart({ onRemove = null, onChange = null }) {
             <li key={item.id}>
               <Grid container>
                 <Grid item lg={5} className={classes.thumbnail}>
-                  <img
-                    src={item.product.productThumbnail}
-                    alt={item.product.productName}
-                    width="75px"
-                  />
+                  <img src={item.path} alt={item.name} width="75px" />
 
-                  <Typography className={classes.name}>
-                    {item.product.productName}
-                  </Typography>
+                  <Typography className={classes.name}>{item.name}</Typography>
                 </Grid>
                 <Grid item lg={2} className={classes.center}>
                   <Box component="span" className={classes.salePrice}>
-                    {formatPrice(item.product.salePrice)}
+                    {formatPrice(item.product_Price)}
                   </Box>
                 </Grid>
                 <Grid item lg={2} className={classes.center}>
@@ -106,8 +111,8 @@ function DetailCart({ onRemove = null, onChange = null }) {
                   />
                 </Grid>
                 <Grid item lg={2} className={classes.center}>
-                  {!isNaN(item.quantity)
-                    ? formatPrice(item.product.salePrice * item.quantity)
+                  {!isNaN(item.count)
+                    ? formatPrice(item.product_Price * item.count)
                     : formatPrice(0)}
                 </Grid>
                 <Grid item lg={1} className={classes.center}>

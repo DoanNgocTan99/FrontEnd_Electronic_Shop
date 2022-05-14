@@ -10,8 +10,8 @@ function ProductList({ data=[]}) {
     <div className={styles.grid__column10}>
             <div className={styles.home__product}> 
                 <div className={styles.grid__row}>       
-                        {data.map((item)=>(
-                        <div className={styles.grid__column24}>     
+                        {data.map((item, index)=>(
+                        <div className={styles.grid__column24} key={`${item}_${index}`}>     
                             <Link to={`/productDetails/${item.id}`} className={styles.home__productitems}>
                               <div className={styles.home__productitemsimg} style={{backgroundImage: `url("${item.path}")`}}>
                                 {/* <img src={item.path} alt ='hinh1'/> */}
@@ -20,7 +20,7 @@ function ProductList({ data=[]}) {
                                 <div className={styles.home__productprice}>
                                     <span className={styles.home__productitemsprice}>{formatPrice(item.product_Price)}</span>
                                     <div className={styles.btn_cart}>
-                                    <i class="fas fa-search"></i>
+                                    <i className="fas fa-search"></i>
                                      Details</div>
                                 </div>
                             </Link>

@@ -33,14 +33,17 @@ function ProductInfor(props) {
     }
   }, [id]);
   const handleAddToCartForm = ({ quantity }) => {
-    const action = addToCart({
-      id: product.id,
-      product,
-      quantity,
-    });
-    dispatch(action);
-
-    setOpen(true);
+    const data = {
+       count: quantity,
+       userId: 7,
+       productId: product.id,
+    };
+    const url = `https://localhost:44306/Cart/Create`;
+      axios.post(url, data).then((response) => {
+        console.log(response)
+        setOpen(true)
+      });
+    
   };
 
   return (

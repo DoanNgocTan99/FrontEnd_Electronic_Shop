@@ -6,16 +6,21 @@ import StorageKeys from 'constants/storage-keys';
 export const login = createAsyncThunk('admin/login', async (payload) => {
   const data = await adminApi.login(payload);
 
-  localStorage.setItem(StorageKeys.TOKEN, data.jwt);
-  localStorage.setItem(StorageKeys.USER, JSON.stringify(data.user));
+  localStorage.setItem(StorageKeys.TOKEN, data.token);
+  localStorage.setItem(StorageKeys.TOKEN, data.role);
+  localStorage.setItem(StorageKeys.TOKEN, data.id);
+  localStorage.setItem(StorageKeys.USER, JSON.stringify(data.username));
 
   return data.user;
 });
 export const loginUser = createAsyncThunk('user/login', async (payload) => {
   const data = await userApi.login(payload);
 
-  localStorage.setItem(StorageUser.TOKEN, data.jwt);
-  localStorage.setItem(StorageUser.USER, JSON.stringify(data.user));
+  localStorage.setItem(StorageUser.TOKEN, data.token);
+  localStorage.setItem(StorageUser.USER, JSON.stringify(data.username));
+  localStorage.setItem(StorageUser.ROLE, data.role);
+  localStorage.setItem(StorageUser.USERID, data.id);
+  localStorage.setItem(StorageUser.AVT, data.avt);
 
   return data.user;
 });
@@ -34,14 +39,18 @@ const authSlice = createSlice({
     logout(state) {
       localStorage.removeItem(StorageKeys.USER);
       localStorage.removeItem(StorageKeys.TOKEN);
-
+      localStorage.removeItem(StorageKeys.USERID);
+      localStorage.removeItem(StorageKeys.ROLE);
+      localStorage.removeItem(StorageKeys.AVT);
       state.current = {};
     },
 
     logoutUser(state) {
-      localStorage.removeItem(StorageUser.USER);
-      localStorage.removeItem(StorageUser.TOKEN);
-
+      localStorage.removeItem(StorageKeys.USER);
+      localStorage.removeItem(StorageKeys.TOKEN);
+      localStorage.removeItem(StorageKeys.USERID);
+      localStorage.removeItem(StorageKeys.ROLE);
+      localStorage.removeItem(StorageKeys.AVT);
       state.current = {};
       state.avatarUrl = '';
     },

@@ -16,7 +16,9 @@ function Login(props) {
   const handleSubmit = async (values) => {
     try {
       const action = loginUser(values);
-      console.log(values);
+      console.log('TEST LOGIN');
+      console.log(action);
+
       const resultAction = await dispatch(action);
       unwrapResult(resultAction);
 
@@ -26,7 +28,6 @@ function Login(props) {
       // });
 
       history.push('/');
-      console.log(history);
     } catch (error) {
       console.log('Failed to login: ', error);
       enqueueSnackbar(`${error.message} 😥😭`, {

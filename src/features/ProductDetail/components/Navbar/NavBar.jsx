@@ -1,17 +1,44 @@
 // import SearchForm from 'components/Header/components/SearchForm';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './NavBar.module.css';
 import { Link, useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { cartItemsCountSelector } from 'features/Cart/selectors';
+import { useDispatch } from 'react-redux';
+import { logoutUser } from 'features/Auth/authSlice';
+// import { useSelector } from 'react-redux';
+// import { cartItemsCountSelector } from 'features/Cart/selectors';
+import axios from 'axios';
 function NavBar(props) {
+  const dispatch = useDispatch();
+  const [userId, setUserId] = useState();
   const history = useHistory();
-  const cartItemsCount = useSelector(cartItemsCountSelector);
-
-  const handeLogout = () => {
-    history.push('/login1');
+  const [isLogin, setIsLogin] = useState(false);
+  // const cartItemsCount = useSelector(cartItemsCountSelector);
+  const [cartItemsCount, setCartItemsCount] = useState([]);
+  const CheckLogin = () => {
+    if (localStorage.getItem('token') === null) {
+      setIsLogin(false);
+    } else {
+      setIsLogin(true);
+    }
   };
-
+  const handleLogout = () => {
+    setIsLogin(false);
+    const action = logoutUser();
+    dispatch(action);
+    history.push('/');
+  };
+  const handleLogin = () => {
+    history.push('/login1');
+    setIsLogin(true);
+  };
+  useEffect(() => {
+    setUserId(localStorage.getItem('userid'));
+    const getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/${userId}`;
+    axios.get(getApi).then((response) => {
+      setCartItemsCount(response.data);
+      CheckLogin();
+    });
+  });
   return (
     <div className={styles.navBar}>
       <Link to={'/'} className={styles.header}>
@@ -20,29 +47,40 @@ function NavBar(props) {
       <div className={styles.navbar_right}>
         <Link to="/cart">
           <div className={styles.navbar__cart}>
-            <i className={styles.cart__image} class="fas fa-shopping-cart"></i>
+            <i className={`${styles.cart__image} fas fa-shopping-cart`}></i>
             <div className={styles.cart__counter}>
-              {!isNaN(cartItemsCount) ? cartItemsCount : 0}
+              {/* {!isNaN(cartItemsCount) ? cartItemsCount : 0} */}
+              {userId ? cartItemsCount : 0}
             </div>
           </div>
         </Link>
         <li className={styles.nav__itemsaccount}>
           <img
-             src="https://upload.wikimedia.org/wikipedia/vi/thumb/5/5c/Chelsea_crest.svg/1200px-Chelsea_crest.svg.png"
+            src="https://upload.wikimedia.org/wikipedia/vi/thumb/5/5c/Chelsea_crest.svg/1200px-Chelsea_crest.svg.png"
             alt=""
             className={styles.img}
           />
           <ul className={styles.nav__itemsmenu}>
+            {isLogin && (
+              <>
+                <li className={styles.nav__menuitems}>
+                  <div href="">Tài khoản của tôi</div>
+                </li>
+                <li className={styles.nav__menuitems}>
+                  <div href="">Đơn mua</div>
+                </li>
+              </>
+            )}
             <li className={styles.nav__menuitems}>
-              <div href="">Tài khoản của tôi</div>
-            </li>
-            <li className={styles.nav__menuitems}>
-              <div href="">Đơn mua</div>
-            </li>
-            <li className={styles.nav__menuitems}>
-              <div onClick={handeLogout} href="">
-                Đăng xuẩt
-              </div>
+              {isLogin ? (
+                <>
+                  <div onClick={handleLogout}>Đăng xuất</div>
+                </>
+              ) : (
+                <>
+                  <div onClick={handleLogin}>Đăng nhập</div>
+                </>
+              )}
             </li>
           </ul>
         </li>
