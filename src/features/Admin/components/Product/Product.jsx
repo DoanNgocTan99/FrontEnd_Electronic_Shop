@@ -23,6 +23,7 @@ function Product(props) {
 
   const queryParams = useMemo(() => {
     const params = queryString.parse(location.search);
+    console.log(location.search);
     return {
       ...params,
       _page: Number.parseInt(params._page) || 1,

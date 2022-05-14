@@ -7,6 +7,7 @@ import ErrorPage from './components/ErrorPage/ErrorPage';
 import UserLoginPage from './features/Auth/pages/UserLoginPage';
 import Product from './features/Product/product.jsx';
 import ProductDetail from './features/ProductDetail/ProductDetail';
+import UserProfile from './features/UserProfile/UserProfile';
 function App() {
   return (
     <div>
@@ -17,6 +18,7 @@ function App() {
         <Route path="/admin" component={AdminFeature} />
         <Route path="/cart" component={CartFeature} />
         <Route path="/productDetails/:id" exact component={ProductDetail} />
+        <Route path="/userProfile" component={UserProfile} />
         <Route component={ErrorPage} />
       </Switch>
     </div>

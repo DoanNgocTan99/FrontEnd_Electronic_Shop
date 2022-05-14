@@ -51,7 +51,9 @@ function NavBar() {
     history.push('/login1');
     setIsLogin(true);
   };
-
+  const handleUserProfile = () => {
+    history.push('/userProfile');
+  };
   window.addEventListener('scroll', changeBackgroundColor);
 
   return (
@@ -81,7 +83,9 @@ function NavBar() {
             {isLogin && (
               <>
                 <li className={styles.nav__menuitems}>
-                  <div href="">Tài khoản của tôi</div>
+                  <div onClick={handleUserProfile} href="">
+                    Tài khoản của tôi
+                  </div>
                 </li>
                 <li className={styles.nav__menuitems}>
                   <div href="">Đơn mua</div>

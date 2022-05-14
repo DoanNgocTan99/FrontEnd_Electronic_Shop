@@ -1,9 +1,9 @@
 import React from 'react';
-import FilterByCategory from './Filters/FilterByCategory'
-import SortByPrice from './Filters/SortByPrice'
+import FilterByCategory from './Filters/FilterByCategory';
+import SortByPrice from './Filters/SortByPrice';
 import PropTypes from 'prop-types';
-import SearchByName from './Filters/SearchByName'
-import styles from './ProductFilter.module.css'
+import SearchByName from './Filters/SearchByName';
+import styles from './ProductFilter.module.css';
 ProductFilters.propTypes = {
   onChange: PropTypes.func,
 };
@@ -16,7 +16,6 @@ function ProductFilters({ onChange }) {
 
   const handleSortChange = (newSort) => {
     if (!onChange) return;
-
     const newFilters = {
       _sort: newSort,
     };
@@ -25,7 +24,6 @@ function ProductFilters({ onChange }) {
 
   const handleSearch = (newSearch) => {
     if (!onChange) return;
-
     const newFilters = {
       productName_contains: newSearch,
     };

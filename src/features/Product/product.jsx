@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import styles from './product.module.css';
-// import SliderBar from './components/Nav'
+import SliderBar from './components/Nav';
 import ProductList from './components/ProductList';
 import NavBar from 'components/Header';
 import Slider from './components/Slider/Slider';
@@ -26,7 +26,17 @@ function Product(props) {
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState([]);
   const pageCount = Math.ceil(productFilter.length / limit);
+  // function compare(a, b) {
+  //   if (a.last_nom < b.last_nom) {
+  //     return -1;
+  //   }
+  //   if (a.last_nom > b.last_nom) {
+  //     return 1;
+  //   }
+  //   return 0;
+  // }
 
+  // objs.sort(compare);
   useEffect(() => {
     const getApi = 'https://localhost:44306/Product';
     axios.get(getApi).then((response) => {
@@ -52,12 +62,33 @@ function Product(props) {
   }, [productFilter, handleChange]);
 
   const handleFiltersChange = (newFilters) => {
-    const productAfterFilter = product.filter(
-      (prd) => prd.categoryId === newFilters
-    );
-    setProductFilter(productAfterFilter);
+    if (typeof newFilters === 'object') {
+      console.log(newFilters.productName_contains);
+      if (newFilters._sort === 'salePrice:ASC') {
+        const productAfterFilter1 = [...productFilter].sort((a, b) => {
+          return a.product_Price - b.product_Price;
+        });
+        setProductFilter(productAfterFilter1);
+      } else if (newFilters._sort === 'salePrice:DESC') {
+        const productAfterFilter2 = [...productFilter].sort((a, b) => {
+          return b.product_Price - a.product_Price;
+        });
+        setProductFilter(productAfterFilter2);
+      } else if (newFilters.productName_contains === '') {
+        setProductFilter(product);
+      } else {
+        const productAfterFilter3 = productFilter.filter((prd) => {
+          return prd.name.includes(newFilters.productName_contains);
+        });
+        setProductFilter(productAfterFilter3);
+      }
+    } else {
+      const productAfterFilter = product.filter((prd) => {
+        return prd.categoryId === newFilters;
+      });
+      setProductFilter(productAfterFilter);
+    }
   };
-
   return (
     <React.Fragment>
       {loading ? (

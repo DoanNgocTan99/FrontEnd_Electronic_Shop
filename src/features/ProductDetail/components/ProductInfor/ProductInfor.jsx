@@ -34,16 +34,14 @@ function ProductInfor(props) {
   }, [id]);
   const handleAddToCartForm = ({ quantity }) => {
     const data = {
-       count: quantity,
-       userId: 7,
-       productId: product.id,
+      count: quantity,
+      userId: 7,
+      productId: product.id,
     };
     const url = `https://localhost:44306/Cart/Create`;
-      axios.post(url, data).then((response) => {
-        console.log(response)
-        setOpen(true)
-      });
-    
+    axios.post(url, data).then((response) => {
+      setOpen(true);
+    });
   };
 
   return (
@@ -71,7 +69,7 @@ function ProductInfor(props) {
           <span className={styles.ProductItem}>{product?.categoryName}</span>
         </div>
         <div className={styles.ProductTableRow}>
-          <span className={styles.ProductItem}>Nước</span>
+          <span className={styles.ProductItem}>Xuất xứ</span>
           <span className={styles.ProductItem}>{product?.origin}</span>
         </div>
         <div className={styles.ProductTableRow}>
