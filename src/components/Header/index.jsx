@@ -35,7 +35,12 @@ function NavBar() {
   };
   useEffect(() => {
     setUserId(localStorage.getItem('userid'));
-    const getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/${userId}`;
+    var getApi = '';
+    if (userId !== undefined) {
+      getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/${userId}`;
+    } else {
+      getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/-1`;
+    }
     axios.get(getApi).then((response) => {
       setCartItemsCount(response.data);
     });

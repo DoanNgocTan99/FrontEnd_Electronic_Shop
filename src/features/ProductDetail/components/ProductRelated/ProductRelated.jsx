@@ -12,19 +12,16 @@ function ProductRelated(props) {
   // };
   useEffect(() => {
     // const paramsString = props.proDetail;
-    console.log(props.proDetail);
     const paramsString = {
       idProduct: props.proDetail[0],
       categoryName: props.proDetail[1],
     };
-    console.log(paramsString);
     // const getApi = `https://api-mts.herokuapp.com/products?${paramsString}`;
     const getApi = `https://localhost:44306/Product/ProductRelated`;
 
     // const getApi = `https://localhost:44306/Product/roductRelated/${paramsString}`;
     axios.post(getApi, paramsString).then((response) => {
       setProducts(response.data);
-      console.log(response.data);
     });
   }, []);
 

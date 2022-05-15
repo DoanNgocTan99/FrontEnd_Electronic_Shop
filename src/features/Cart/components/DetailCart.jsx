@@ -72,7 +72,6 @@ function DetailCart({ onRemove = null, onChange = null }) {
     const getApi = `https://localhost:44306/Cart/GetListCartByIdUser/7`;
     axios.get(getApi).then((response) => {
       setCartItems(response.data);
-      console.log(response.data);
     });
   }, []);
 

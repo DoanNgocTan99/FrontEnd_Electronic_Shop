@@ -63,7 +63,6 @@ function Product(props) {
 
   const handleFiltersChange = (newFilters) => {
     if (typeof newFilters === 'object') {
-      console.log(newFilters.productName_contains);
       if (newFilters._sort === 'salePrice:ASC') {
         const productAfterFilter1 = [...productFilter].sort((a, b) => {
           return a.product_Price - b.product_Price;

@@ -31,9 +31,18 @@ function NavBar(props) {
     history.push('/login1');
     setIsLogin(true);
   };
+
+  const handleUserProfile = () => {
+    history.push('/userProfile');
+  };
   useEffect(() => {
     setUserId(localStorage.getItem('userid'));
-    const getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/${userId}`;
+    var getApi = '';
+    if (userId !== undefined) {
+      getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/${userId}`;
+    } else {
+      getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/-1`;
+    }
     axios.get(getApi).then((response) => {
       setCartItemsCount(response.data);
       CheckLogin();
@@ -64,7 +73,9 @@ function NavBar(props) {
             {isLogin && (
               <>
                 <li className={styles.nav__menuitems}>
-                  <div href="">Tài khoản của tôi</div>
+                  <div onClick={handleUserProfile} href="">
+                    Tài khoản của tôi
+                  </div>
                 </li>
                 <li className={styles.nav__menuitems}>
                   <div href="">Đơn mua</div>
