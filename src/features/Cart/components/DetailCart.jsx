@@ -63,13 +63,14 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
   },
 }));
-
 function DetailCart({ onRemove = null, onChange = null }) {
+  const [id, setId] = useState(localStorage.getItem('userid'));
   const [cartItems, setCartItems] = useState([]);
+  const [checkCart, setCheckCart] = useState(false)
   const classes = useStyles();
 
   useEffect(() => {
-    const getApi = `https://localhost:44306/Cart/GetListCartByIdUser/7`;
+    const getApi = `https://localhost:44306/Cart/GetListCartByIdUser/${id}`;
     axios.get(getApi).then((response) => {
       setCartItems(response.data);
     });
@@ -78,8 +79,10 @@ function DetailCart({ onRemove = null, onChange = null }) {
   console.log(cartItems);
 
   const handleRemoveItem = (productId) => {
-    if (!onRemove) return;
-    onRemove(productId);
+    // if (!onRemove) return;
+    // onRemove(productId);
+    const getApi = `https://localhost:44306/Cart/Delete?id=${productId}`;
+    axios.delete(getApi).then((response) => {});
   };
 
   const handleChangeQuantity = (product) => {

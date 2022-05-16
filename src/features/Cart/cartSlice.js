@@ -4,12 +4,14 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     cartItems: [],
-    cartQuantity: 0
+    cartQuantity: 0,
   },
   reducers: {
     addToCart(state, action) {
       const newItem = action.payload;
-      const index = state.cartItems.findIndex((x) => x.productId === newItem.productId);
+      const index = state.cartItems.findIndex(
+        (x) => x.productId === newItem.productId
+      );
       if (index >= 0) {
         state.cartItems[index].count += newItem.count;
       } else {
@@ -26,6 +28,7 @@ const cartSlice = createSlice({
     },
 
     removeFromCart(state, action) {
+      console.log(action);
       const idNeedToRemove = action.payload;
       state.cartItems = state.cartItems.filter((x) => x.id !== idNeedToRemove);
     },
