@@ -38,7 +38,7 @@ function Product(props) {
 
   // objs.sort(compare);
   useEffect(() => {
-    const getApi = 'https://localhost:44306/Product';
+    const getApi = 'https://electronic-api.azurewebsites.net/Product';
     axios.get(getApi).then((response) => {
       setProduct(response.data);
       setProductFilter(response.data);

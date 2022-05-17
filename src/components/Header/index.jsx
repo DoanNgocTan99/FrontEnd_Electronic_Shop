@@ -37,9 +37,9 @@ function NavBar() {
     setUserId(localStorage.getItem('userid'));
     var getApi = '';
     if (userId !== undefined) {
-      getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/${userId}`;
+      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
     } else {
-      getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/-1`;
+      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
     }
     axios.get(getApi).then((response) => {
       setCartItemsCount(response.data);

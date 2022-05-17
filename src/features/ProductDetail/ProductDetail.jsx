@@ -21,7 +21,7 @@ function ProductDetail(props) {
 
   useEffect(() => {
     if (id) {
-      const getApi = `https://localhost:44306/Product/${id}`;
+      const getApi = `https://electronic-api.azurewebsites.net/Product/${id}`;
       axios.get(getApi).then((response) => {
         setproduct(response.data);
       });
