@@ -16,7 +16,7 @@ function FilterByCategory({ onChange }) {
         setCategoryList(
           list.map((x) => ({
             id: x.id,
-            name: x.categoryName,
+            name: x.name,
           }))
         );
       } catch (error) {

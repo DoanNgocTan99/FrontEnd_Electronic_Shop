@@ -49,17 +49,17 @@ const useStyles = makeStyles((theme) => ({
 function AddCategoryForm({ onSubmit }) {
   const classes = useStyles();
   const schema = yup.object().shape({
-    categoryName: yup.string().required('Please enter category name.'),
+    name: yup.string().required('Please enter category name.'),
 
-    categoryThumbnail: yup
+    imagePath: yup
       .string()
       .required('Please enter class of category thumbnail.'),
   });
 
   const form = useForm({
     defaultValues: {
-      categoryName: '',
-      categoryThumbnail: '',
+      name: '',
+      imagePath: '',
     },
     resolver: yupResolver(schema),
   });
@@ -83,8 +83,8 @@ function AddCategoryForm({ onSubmit }) {
       <h3 className={classes.title}>Add New Category</h3>
 
       <form onSubmit={form.handleSubmit(handleAddCategory)}>
-        <InputField name="categoryName" label="Name" form={form} />
-        <InputField name="categoryThumbnail" label="Class" form={form} />
+        <InputField name="name" label="Name" form={form} />
+        <InputField name="imagePath" label="Class" form={form} />
         <Button
           className={classes.submit}
           disabled={isSubmitting}

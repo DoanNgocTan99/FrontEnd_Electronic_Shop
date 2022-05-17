@@ -14,7 +14,7 @@ function SearchByName({ onChange }) {
 
   return (
     <div className="filter-products">
-      <form onSubmit={handleSearch}>
+      <form onChange={handleSearch}>
         <input
           type="text"
           className="filter-products__input"

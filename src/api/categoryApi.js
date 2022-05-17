@@ -7,35 +7,35 @@ const categoryApi = {
   },
 
   get(id) {
-    const url = `/categories/${id}`;
+    const url = `/Category/${id}`;
     return axiosClient.get(url);
   },
 
   add(data) {
-    const url = '/categories';
+    const url = '/Category/Create';
     const token = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     };
     return axiosClient.post(url, data, token);
   },
 
   update(data) {
-    const url = `/categories/${data.id}`;
+    const url = `/Category/Update/${data.id}`;
     const token = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     };
     return axiosClient.put(url, data, token);
   },
 
   remove(id) {
-    const url = `/categories/${id}`;
+    const url = `/Category/${id}`;
     const token = {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('access-token')}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     };
     return axiosClient.delete(url, token);

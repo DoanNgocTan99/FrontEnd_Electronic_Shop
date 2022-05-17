@@ -76,12 +76,12 @@ function UpdateProductForm({ onSubmit, onRemove, product }) {
 
   const form = useForm({
     defaultValues: {
-      productName: product.productName,
-      productThumbnail: product.productThumbnail,
-      productDescription: product.productDescription,
+      productName: product.name,
+      productThumbnail: product.path,
+      productDescription: product.description,
       brand: product.brand,
-      salePrice: product.salePrice,
-      'category.id': product.category.id,
+      salePrice: product.product_Price,
+      'category.id': product.categoryId,
     },
     resolver: yupResolver(schema),
   });

@@ -1,21 +1,21 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import styles from './product.module.css';
-import SliderBar from './components/Nav';
+// import SliderBar from './components/Nav';
 import ProductList from './components/ProductList';
 import NavBar from 'components/Header';
 import Slider from './components/Slider/Slider';
 import Coupon from './components/Coupon/Coupon';
 import Footer from './components/Footer/Footer';
 import { Pagination } from '@material-ui/lab';
-import productApi from 'api/productApi';
-import { useHistory, useLocation } from 'react-router-dom';
-import queryString from 'query-string';
+// import productApi from 'api/productApi';
+// import { useHistory, useLocation } from 'react-router-dom';
+// import queryString from 'query-string';
 import ProductFilters from './components/ProductFilters/ProductFilter';
 import ClipLoader from 'react-spinners/ClipLoader';
 import ProductSkeletonList from './ProductSkeletonList';
-import StorageUser from 'constants/storage-user';
-import { Provider } from 'react-redux';
+// import StorageUser from 'constants/storage-user';
+// import { Provider } from 'react-redux';
 
 const limit = 15;
 
@@ -26,17 +26,7 @@ function Product(props) {
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState([]);
   const pageCount = Math.ceil(productFilter.length / limit);
-  // function compare(a, b) {
-  //   if (a.last_nom < b.last_nom) {
-  //     return -1;
-  //   }
-  //   if (a.last_nom > b.last_nom) {
-  //     return 1;
-  //   }
-  //   return 0;
-  // }
 
-  // objs.sort(compare);
   useEffect(() => {
     const getApi = 'https://electronic-api.azurewebsites.net/Product';
     axios.get(getApi).then((response) => {
@@ -117,14 +107,6 @@ function Product(props) {
                 )}
               </div>
               <div className="product__pagination">
-                {/* {pageCount > 0  && (
-                  <Pagination
-                    color="primary"
-                    count={Math.ceil(productFilter.length / limit)}
-                    page={currentPage}
-                    onChange={handleChange}
-                  />
-                )} */}
                 {pageCount > 0 ? (
                   <Pagination
                     color="primary"

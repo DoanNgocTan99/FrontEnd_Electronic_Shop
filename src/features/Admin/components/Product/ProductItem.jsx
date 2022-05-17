@@ -6,14 +6,15 @@ import React, { useState } from 'react';
 import { formatPrice } from 'utils';
 import './ProductItem.scss';
 
-ProductItem.propTypes = {
-  product: PropTypes.object,
-};
+// ProductItem.propTypes = {
+//   product: PropTypes.object,
+// };
 
 function ProductItem({ product }) {
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
+    console.log(product);
     setOpen(true);
   };
 
@@ -28,17 +29,17 @@ function ProductItem({ product }) {
         <div>
           <img
             className="product-item__thumbnail"
-            src={product.productThumbnail}
-            alt={product.productName}
+            src={product.path}
+            alt={product.name}
             width="100%"
           />
         </div>
 
         <div className="product-item__name">
-          <span>{product.productName}</span>
+          <span>{product.name}</span>
         </div>
         <div className="product-item__price">
-          <span>{formatPrice(product.salePrice)}</span>
+          <span>{formatPrice(product.product_Price)}</span>
         </div>
       </div>
       <Dialog

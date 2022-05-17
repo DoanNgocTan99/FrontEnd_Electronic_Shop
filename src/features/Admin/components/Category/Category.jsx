@@ -2,6 +2,7 @@ import { Dialog, Grid, IconButton } from '@material-ui/core';
 import DialogContent from '@material-ui/core/DialogContent';
 import { Close } from '@material-ui/icons';
 import categoryApi from 'api/categoryApi';
+import axios from 'axios';
 import Table from 'components/Table/Table';
 import AddCategory from 'features/CRUD/components/AddCategory/AddCategory';
 import ConfirmationDialog from 'features/CRUD/components/ConfirmationDialog/ConfirmationDialog';
@@ -108,11 +109,13 @@ function Category() {
     (async () => {
       try {
         const list = await categoryApi.getAll();
+        // const getApi = 'https://electronic-api.azurewebsites.net/Product';
+        // axios.get(getApi).then((response) => {});
         setCategoryList(
           list.map((x) => ({
             id: x.id,
-            name: x.categoryName,
-            thumbnail: x.categoryThumbnail,
+            name: x.name,
+            thumbnail: x.imagePath,
           }))
         );
       } catch (error) {

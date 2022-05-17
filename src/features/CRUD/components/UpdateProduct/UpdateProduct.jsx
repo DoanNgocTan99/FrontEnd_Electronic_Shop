@@ -3,6 +3,7 @@ import { useSnackbar } from 'notistack';
 import PropTypes from 'prop-types';
 import React from 'react';
 import UpdateProductForm from '../UpdateProductForm/UpdateProductForm';
+import axios from 'axios';
 
 UpdateProduct.propTypes = {
   closeDialog: PropTypes.func,
@@ -14,13 +15,14 @@ function UpdateProduct({ closeDialog, product }) {
 
   const handleUpdate = async (values) => {
     try {
-      const formValues = {
-        ...values,
-        salePrice: Number.parseInt(values.salePrice),
-        id: product.id,
-      };
-
-      await productApi.update(formValues);
+      // const formValues = {
+      //   ...values,
+      //   product_Price: Number.parseInt(values.product_Price),
+      //   id: product.id,
+      // };
+      console.log(values);
+      const getApi = `https://electronic-api.azurewebsites.net/Product/Update/${product.id}`;
+      axios.put(getApi, values).then((response) => {});
 
       if (closeDialog) {
         closeDialog();
@@ -47,8 +49,9 @@ function UpdateProduct({ closeDialog, product }) {
 
   const handleRemove = async () => {
     try {
-      await productApi.remove(product.id);
-
+      // await productApi.remove(product.id);
+      const getApi = `https://electronic-api.azurewebsites.net/Product/${product.id}`;
+      axios.delete(getApi).then((response) => {});
       if (closeDialog) {
         closeDialog();
       }

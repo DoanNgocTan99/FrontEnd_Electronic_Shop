@@ -51,17 +51,15 @@ function UpdateCategoryForm({ onSubmit, category }) {
   const classes = useStyles();
 
   const schema = yup.object().shape({
-    categoryName: yup.string().required('Please enter category name.'),
+    name: yup.string().required('Please enter category name.'),
 
-    categoryThumbnail: yup
-      .string()
-      .required('Please enter url of category thumbnail.'),
+    imagePath: yup.string().required('Please enter url of category thumbnail.'),
   });
 
   const form = useForm({
     defaultValues: {
-      categoryName: category.name,
-      categoryThumbnail: category.thumbnail,
+      name: category.name,
+      imagePath: category.imagePath,
     },
     resolver: yupResolver(schema),
   });
@@ -85,8 +83,8 @@ function UpdateCategoryForm({ onSubmit, category }) {
       <h3 className={classes.title}>Update Category</h3>
 
       <form onSubmit={form.handleSubmit(handleUpdateCategory)}>
-        <InputField name="categoryName" label="Name" form={form} />
-        <InputField name="categoryThumbnail" label="Class" form={form} />
+        <InputField name="name" label="Name" form={form} />
+        <InputField name="imagePath" label="Class" form={form} />
         <Button
           className={classes.submit}
           disabled={isSubmitting}

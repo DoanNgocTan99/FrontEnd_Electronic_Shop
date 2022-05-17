@@ -12,11 +12,7 @@ ProductFilters.propTypes = {
 function ProductFilters({ onChange }) {
   const handleCategoryChange = (newCategoryId) => {
     if (!onChange) return;
-
-    const newFilters = {
-      'category.id': newCategoryId,
-    };
-    onChange(newFilters);
+    onChange(parseInt(newCategoryId));
   };
 
   const handleSortChange = (newSort) => {
@@ -30,7 +26,6 @@ function ProductFilters({ onChange }) {
 
   const handleSearch = (newSearch) => {
     if (!onChange) return;
-
     const newFilters = {
       productName_contains: newSearch,
     };
@@ -41,9 +36,9 @@ function ProductFilters({ onChange }) {
     <div className="product-filters">
       <h1 className="product-filters__title">Products</h1>
       <div className="product-filters__box">
-      <FilterByCategory onChange={handleCategoryChange} />
-      <SortByPrice onChange={handleSortChange} />
-      <SearchByName onChange={handleSearch} />
+        <FilterByCategory onChange={handleCategoryChange} />
+        <SortByPrice onChange={handleSortChange} />
+        <SearchByName onChange={handleSearch} />
       </div>
     </div>
   );

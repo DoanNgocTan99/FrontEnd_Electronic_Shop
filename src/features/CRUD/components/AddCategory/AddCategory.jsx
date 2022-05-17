@@ -13,6 +13,7 @@ function AddCategory({ closeDialog }) {
 
   const handleSubmit = async (values) => {
     try {
+      console.log(values);
       await categoryApi.add(values);
 
       if (closeDialog) {
