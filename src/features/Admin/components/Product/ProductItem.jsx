@@ -29,7 +29,7 @@ function ProductItem({ product }) {
         <div>
           <img
             className="product-item__thumbnail"
-            src={product.path}
+            src={product.avt}
             alt={product.name}
             width="100%"
           />

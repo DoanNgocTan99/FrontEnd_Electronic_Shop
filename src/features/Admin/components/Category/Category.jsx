@@ -109,7 +109,7 @@ function Category() {
     (async () => {
       try {
         const list = await categoryApi.getAll();
-        // const getApi = 'https://electronic-api.azurewebsites.net/Product';
+        // const getApi = 'https://localhost:44306/Product';
         // axios.get(getApi).then((response) => {});
         setCategoryList(
           list.map((x) => ({

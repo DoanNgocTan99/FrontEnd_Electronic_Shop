@@ -10,6 +10,8 @@ import axios from 'axios';
 function NavBar(props) {
   const dispatch = useDispatch();
   const [userId, setUserId] = useState();
+  const [avt, setAvt] = useState();
+
   const history = useHistory();
   const [isLogin, setIsLogin] = useState(false);
   // const cartItemsCount = useSelector(cartItemsCountSelector);
@@ -35,19 +37,39 @@ function NavBar(props) {
   const handleUserProfile = () => {
     history.push('/userProfile');
   };
+  // useEffect(() => {
+  //   setUserId(localStorage.getItem('userid'));
+  //   setAvt(localStorage.getItem('avarta'));
+  //   var getApi = '';
+  //   if (userId !== undefined) {
+  //     getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/${userId}`;
+  //   } else {
+  //     getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/-1`;
+  //   }
+  //   axios.get(getApi).then((response) => {
+  //     CheckLogin();
+  //   });
+  // });
+
   useEffect(() => {
     setUserId(localStorage.getItem('userid'));
-    var getApi = '';
-    if (userId !== undefined) {
-      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
+    setAvt(localStorage.getItem('avarta'));
+    CheckLogin();
+    if (props.count === undefined) {
+      if (userId === undefined) {
+        var getApi = '';
+        getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/${userId}`;
+      } else {
+        console.log('response.data');
+        getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/-1`;
+      }
+      axios.get(getApi).then((response) => {
+        setCartItemsCount(response.data);
+      });
     } else {
-      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
+      setCartItemsCount(props.count);
     }
-    axios.get(getApi).then((response) => {
-      setCartItemsCount(response.data);
-      CheckLogin();
-    });
-  });
+  }, [props.count]);
   return (
     <div className={styles.navBar}>
       <Link to={'/'} className={styles.header}>
@@ -58,14 +80,16 @@ function NavBar(props) {
           <div className={styles.navbar__cart}>
             <i className={`${styles.cart__image} fas fa-shopping-cart`}></i>
             <div className={styles.cart__counter}>
-              {/* {!isNaN(cartItemsCount) ? cartItemsCount : 0} */}
               {userId ? cartItemsCount : 0}
             </div>
           </div>
         </Link>
         <li className={styles.nav__itemsaccount}>
           <img
-            src="https://upload.wikimedia.org/wikipedia/vi/thumb/5/5c/Chelsea_crest.svg/1200px-Chelsea_crest.svg.png"
+            src={
+              avt ||
+              'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg'
+            }
             alt=""
             className={styles.img}
           />

@@ -18,13 +18,26 @@ function ProductDetail(props) {
   }, []);
   const [product, setproduct] = useState(null);
   const { id } = useParams();
-
+  const [count, setCount] = useState();
   useEffect(() => {
     if (id) {
-      const getApi = `https://electronic-api.azurewebsites.net/Product/${id}`;
+      const getApi = `https://localhost:44306/Product/${id}`;
       axios.get(getApi).then((response) => {
         setproduct(response.data);
       });
+      const userId = localStorage.getItem('userid');
+      if (userId !== undefined) {
+        const getApii = `https://localhost:44306/Cart/GetCountProductByIdUser/${userId}`;
+        axios.get(getApii).then((response) => {
+          setCount(response.data);
+        });
+      } else {
+        const getApii = `https://localhost:44306/Cart/GetCountProductByIdUser/-1`;
+        axios.get(getApii).then((response) => {
+          setCount(response.data);
+        });
+      }
+      
     }
   }, [id]);
   return (
@@ -41,7 +54,7 @@ function ProductDetail(props) {
         </div>
       ) : (
         <React.Fragment>
-          <NavBar />
+          <NavBar count={count} />
           <div className={styles.container_productDetails}>
             <div className={styles.grid__row}>
               <div className={styles.grid__column5}>
@@ -51,11 +64,7 @@ function ProductDetail(props) {
                     Back
                   </Link>
                 </div>
-                <img
-                  src={product?.path}
-                  alt=""
-                  className={styles.product_img}
-                />
+                <img src={product?.avt} alt="" className={styles.product_img} />
               </div>
               <div className={styles.grid__column5}>
                 <ProductInfor />

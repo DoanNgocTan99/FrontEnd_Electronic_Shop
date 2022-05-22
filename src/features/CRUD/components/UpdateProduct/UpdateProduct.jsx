@@ -21,7 +21,7 @@ function UpdateProduct({ closeDialog, product }) {
       //   id: product.id,
       // };
       console.log(values);
-      const getApi = `https://electronic-api.azurewebsites.net/Product/Update/${product.id}`;
+      const getApi = `https://localhost:44306/Product/Update/${product.id}`;
       axios.put(getApi, values).then((response) => {});
 
       if (closeDialog) {
@@ -50,7 +50,7 @@ function UpdateProduct({ closeDialog, product }) {
   const handleRemove = async () => {
     try {
       // await productApi.remove(product.id);
-      const getApi = `https://electronic-api.azurewebsites.net/Product/${product.id}`;
+      const getApi = `https://localhost:44306/Product/${product.id}`;
       axios.delete(getApi).then((response) => {});
       if (closeDialog) {
         closeDialog();

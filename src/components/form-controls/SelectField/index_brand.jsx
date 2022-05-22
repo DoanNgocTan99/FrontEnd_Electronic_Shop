@@ -5,18 +5,19 @@ import {
   MenuItem,
   Select,
 } from '@material-ui/core';
-import categoryApi from 'api/categoryApi';
+// import categoryApi from 'api/categoryApi';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Controller } from 'react-hook-form';
 
-SelectField.propTypes = {
+SelectFieldBrand.propTypes = {
   form: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
 };
 
-function SelectField(props) {
+function SelectFieldBrand(props) {
   const { form, name, label } = props;
   const {
     formState: { errors },
@@ -28,13 +29,17 @@ function SelectField(props) {
   useEffect(() => {
     (async () => {
       try {
-        const list = await categoryApi.getAll();
-        setCategoryList(
-          list.map((x) => ({
-            id: x.id,
-            name: x.name,
-          }))
-        );
+        const getApi = `https://localhost:44306/Brand`;
+        axios.get(getApi).then((response) => {
+          setCategoryList(
+            response.data.map((x) => ({
+              id: x.id,
+              name: x.name,
+            }))
+          );
+        });
+        // const list = await categoryApi.getAll();
+        
       } catch (error) {
         console.log('Failed to fetch category list', error);
       }
@@ -68,4 +73,4 @@ function SelectField(props) {
   );
 }
 
-export default SelectField;
+export default SelectFieldBrand;

@@ -77,7 +77,7 @@ function UpdateProductForm({ onSubmit, onRemove, product }) {
   const form = useForm({
     defaultValues: {
       productName: product.name,
-      productThumbnail: product.path,
+      productThumbnail: product.avt,
       productDescription: product.description,
       brand: product.brand,
       salePrice: product.product_Price,

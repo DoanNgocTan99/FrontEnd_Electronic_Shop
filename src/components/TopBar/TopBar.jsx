@@ -61,7 +61,10 @@ function TopBar(props) {
 
           <img
             className="top-bar__avatar"
-            src="https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1670746276469971&height=50&width=50&ext=1630640379&hash=AeQRqhF_z5JMdTp8T4Q"
+            src={
+              localStorage.getItem('avarta') ||
+              'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg'
+            }
             alt="avatar"
             onClick={handleUserClick}
           />

@@ -37,7 +37,7 @@ const productApi = {
   },
 
   add(data) {
-    const url = '/Product';
+    const url = '/Product/Create';
     const token = {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('access-token')}`,

@@ -13,11 +13,13 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { formatPrice } from 'utils';
 import ProductQuantity from './ProductQuantity';
-
+import { Snackbar } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
 DetailCart.propTypes = {
   onRemove: PropTypes.func,
   onChange: PropTypes.func,
 };
+const Alert = (props) => <MuiAlert elevation={6} variant="filled" {...props} />;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,21 +70,26 @@ function DetailCart({ onRemove = null, onChange = null }) {
   const [cartItems, setCartItems] = useState([]);
   const [checkCart, setCheckCart] = useState(false);
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
 
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
   useEffect(() => {
-    const getApi = `https://electronic-api.azurewebsites.net/Cart/GetListCartByIdUser/${id}`;
+    const getApi = `https://localhost:44306/Cart/GetListCartByIdUser/${id}`;
     axios.get(getApi).then((response) => {
       setCartItems(response.data);
     });
   }, []);
 
-  console.log(cartItems);
-
   const handleRemoveItem = (productId) => {
-    // if (!onRemove) return;
-    // onRemove(productId);
-    const getApi = `https://electronic-api.azurewebsites.net/Cart/Delete?id=${productId}`;
-    axios.delete(getApi).then((response) => {});
+    const getApi = `https://localhost:44306/Cart/Delete?id=${productId}`;
+    axios.delete(getApi).then((response) => {
+      setOpen(true);
+    });
   };
 
   const handleChangeQuantity = (product) => {
@@ -91,13 +98,23 @@ function DetailCart({ onRemove = null, onChange = null }) {
   };
   return (
     <Box>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      >
+        <Alert onClose={handleClose} severity="success">
+          Đã xóa sản phẩm khỏi giỏ hàng thành công
+        </Alert>
+      </Snackbar>
       <Paper elevation={0}>
         <ul className={classes.root}>
           {cartItems.map((item) => (
             <li key={item.id}>
               <Grid container>
                 <Grid item lg={5} className={classes.thumbnail}>
-                  <img src={item.path} alt={item.name} width="75px" />
+                  <img src={item.avt} alt={item.name} width="75px" />
 
                   <Typography className={classes.name}>{item.name}</Typography>
                 </Grid>

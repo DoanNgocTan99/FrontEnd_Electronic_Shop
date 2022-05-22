@@ -14,6 +14,7 @@ function NavBar() {
   const history = useHistory();
   const [cartItemsCount, setCartItemsCount] = useState([]);
   const [userId, setUserId] = useState();
+  const [avt, setAvt] = useState();
   // const cartItemsCount = useSelector(cartItemsCountSelector);
   const avatarUrl = useSelector((state) => state.admin.avatarUrl);
   // const isLogin =
@@ -35,11 +36,12 @@ function NavBar() {
   };
   useEffect(() => {
     setUserId(localStorage.getItem('userid'));
+    setAvt(localStorage.getItem('avarta'));
     var getApi = '';
     if (userId !== undefined) {
-      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
+      getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/${userId}`;
     } else {
-      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
+      getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/-1`;
     }
     axios.get(getApi).then((response) => {
       setCartItemsCount(response.data);
@@ -78,8 +80,8 @@ function NavBar() {
         <li className={styles.nav__itemsaccount}>
           <img
             src={
-              avatarUrl ||
-              'https://upload.wikimedia.org/wikipedia/vi/thumb/5/5c/Chelsea_crest.svg/1200px-Chelsea_crest.svg.png'
+              avt ||
+              'https://static2.yan.vn/YanNews/2167221/202102/facebook-cap-nhat-avatar-doi-voi-tai-khoan-khong-su-dung-anh-dai-dien-e4abd14d.jpg'
             }
             alt="Ảnh đại diện"
             className={styles.img}

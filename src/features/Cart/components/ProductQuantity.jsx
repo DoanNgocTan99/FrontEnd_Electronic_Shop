@@ -35,7 +35,6 @@ function ProductQuantity({ item = {}, onChange = null }) {
 
   const handleQuantity = (value) => {
     if (!onChange) return;
-
     if (typingTimeoutRef.current) {
       clearTimeout(typingTimeoutRef);
     }
@@ -43,7 +42,7 @@ function ProductQuantity({ item = {}, onChange = null }) {
     typingTimeoutRef.current = setTimeout(() => {
       const formValue = {
         ...item,
-        quantity: parseInt(value),
+        count: parseInt(value),
       };
 
       onChange(formValue);

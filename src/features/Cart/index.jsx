@@ -6,14 +6,15 @@ import {
   Paper,
   Typography,
 } from '@material-ui/core';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeFromCart, setQuantity } from './cartSlice';
 import DetailCart from './components/DetailCart';
 import ProductTotal from './components/ProductTotal';
 import TotalCost from './components/TotalCost';
-import NavBar from '../ProductDetail/components/Navbar/NavBar'
-import styles from "./index.module.css"
+import NavBar from '../ProductDetail/components/Navbar/NavBar';
+import styles from './index.module.css';
+import axios from 'axios';
 CartFeature.propTypes = {};
 
 const useStyles = makeStyles((theme) => ({
@@ -32,9 +33,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CartFeature() {
+  const [count, setCount] = useState();
+  const [userId, setUserId] = useState();
+
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    setUserId(localStorage.getItem('userid'));
+    var getApi = '';
+    if (userId !== undefined) {
+      getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/${userId}`;
+    } else {
+      getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/-1`;
+    }
+    axios.get(getApi).then((response) => {
+      console.log(response.data);
+      setCount(response.data);
+    });
+  }, [userId]);
   const handleRemoveFromCart = (productId) => {
     const action = removeFromCart(productId);
     dispatch(action);
@@ -42,37 +58,38 @@ function CartFeature() {
 
   const handleChangeQuantity = (product) => {
     const action = setQuantity(product);
+    setCount(product.count);
     dispatch(action);
   };
 
   return (
     <React.Fragment>
-    <NavBar/>
-    <Box className={styles.box}>
-      <Container>
-        <Typography
-          component="h1"
-          variant="h5"
-          style={{ marginBottom: '12px' }}
-        >
-          GIỎ HÀNG
-        </Typography>
-        <Grid container>
-          <Grid item className={classes.left}>
-            <ProductTotal />
-            <DetailCart
-              onRemove={handleRemoveFromCart}
-              onChange={handleChangeQuantity}
-            />
-          </Grid>
-          <Paper elevation={0}>
-            <Grid item className={classes.right}>
-              <TotalCost />
+      <NavBar count={count} />
+      <Box className={styles.box}>
+        <Container>
+          <Typography
+            component="h1"
+            variant="h5"
+            style={{ marginBottom: '12px' }}
+          >
+            GIỎ HÀNG
+          </Typography>
+          <Grid container>
+            <Grid item className={classes.left}>
+              <ProductTotal />
+              <DetailCart
+                onRemove={handleRemoveFromCart}
+                onChange={handleChangeQuantity}
+              />
             </Grid>
-          </Paper>
-        </Grid>
-      </Container>
-    </Box>
+            <Paper elevation={0}>
+              <Grid item className={classes.right}>
+                <TotalCost />
+              </Grid>
+            </Paper>
+          </Grid>
+        </Container>
+      </Box>
     </React.Fragment>
   );
 }

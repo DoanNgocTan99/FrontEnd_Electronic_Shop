@@ -15,8 +15,8 @@ function ProductRelated(props) {
       idProduct: props.proDetail[0],
       categoryName: props.proDetail[1],
     };
-    console.log(paramsString)
-    const getApi = `https://electronic-api.azurewebsites.net/Product/ProductRelated`;
+    console.log(paramsString);
+    const getApi = `https://localhost:44306/Product/ProductRelated`;
     axios.post(getApi, paramsString).then((response) => {
       setProducts(response.data);
     });
@@ -36,7 +36,7 @@ function ProductRelated(props) {
                 >
                   <div
                     className={styles.home__productitemsimg}
-                    style={{ backgroundImage: `url("${item.path}")` }}
+                    style={{ backgroundImage: `url("${item.avt}")` }}
                   ></div>
                   <h4 className={styles.home__productitemsname}>{item.name}</h4>
                   <div className={styles.home__productprice}>

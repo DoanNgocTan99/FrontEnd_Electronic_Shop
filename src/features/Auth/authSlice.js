@@ -10,6 +10,7 @@ export const login = createAsyncThunk('admin/login', async (payload) => {
   localStorage.setItem(StorageKeys.TOKEN, data.role);
   localStorage.setItem(StorageKeys.TOKEN, data.id);
   localStorage.setItem(StorageKeys.USER, JSON.stringify(data.username));
+  console.log(data);
 
   return data.user;
 });
@@ -21,7 +22,6 @@ export const loginUser = createAsyncThunk('user/login', async (payload) => {
   localStorage.setItem(StorageUser.ROLE, data.role);
   localStorage.setItem(StorageUser.USERID, data.id);
   localStorage.setItem(StorageUser.AVT, data.avt);
-
   return data.user;
 });
 
