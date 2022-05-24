@@ -40,6 +40,11 @@ function ProductDetail(props) {
       
     }
   }, [id]);
+
+  const changeCountHandler = (quantity) => {
+    setCount(prev => prev + quantity)
+  };
+
   return (
     <React.Fragment>
       {loading ? (
@@ -67,7 +72,7 @@ function ProductDetail(props) {
                 <img src={product?.avt} alt="" className={styles.product_img} />
               </div>
               <div className={styles.grid__column5}>
-                <ProductInfor />
+                <ProductInfor changeCount={changeCountHandler} />
               </div>
               <div className={styles.RelatedWapper}>
                 <ProductRelated

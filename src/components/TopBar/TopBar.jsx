@@ -39,7 +39,7 @@ function TopBar(props) {
     const action = logout();
     dispatch(action);
     setAnchorEl(null);
-    history.push('/login');
+    history.push('/login1');
   };
 
   return (

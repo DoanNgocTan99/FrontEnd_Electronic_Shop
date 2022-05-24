@@ -1,6 +1,7 @@
 import { Box, Grid, IconButton, makeStyles, Paper } from '@material-ui/core';
 import { DeleteOutlined } from '@material-ui/icons';
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { cartItemsCountSelector } from '../selectors';
 
@@ -22,8 +23,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ProductTotal() {
-  const cartItemsCount = useSelector(cartItemsCountSelector);
+  // const cartItemsCount = useSelector(cartItemsCountSelector);
+  const [id, setId] = useState(localStorage.getItem('userid'));
+  const [cartItemsCount, setCartItemsCount] = useState();
   const classes = useStyles();
+
+  useEffect(() => {
+    const getApi = `https://localhost:44306/Cart/CountProductInCart/${id}`;
+    axios.get(getApi).then((response) => {
+      setCartItemsCount(response.data);
+    });
+  }, []);
 
   return (
     <Box>

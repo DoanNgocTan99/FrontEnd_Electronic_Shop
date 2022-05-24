@@ -1,26 +1,25 @@
-import { Dialog, Grid, IconButton } from '@material-ui/core';
+import AddPayment from 'features/CRUD/components/AddPayment/AddPayment';
+import ConfirmationDialog from 'features/CRUD/components/ConfirmationDialog/ConfirmationDialog';
+import UpdatePayment from 'features/CRUD/components/UpdatePayment/UpdatePayment';
+
 import DialogContent from '@material-ui/core/DialogContent';
 import { Close } from '@material-ui/icons';
-import categoryApi from 'api/categoryApi';
-// import axios from 'axios';
-import Table from 'components/Table/Table';
-import AddCategory from 'features/CRUD/components/AddCategory/AddCategory';
-import ConfirmationDialog from 'features/CRUD/components/ConfirmationDialog/ConfirmationDialog';
-import UpdateCategory from 'features/CRUD/components/UpdateCategory/UpdateCategory';
-import { useSnackbar } from 'notistack';
+import { Dialog, Grid, IconButton } from '@material-ui/core';
+import 'features/Admin/components/Category/Category.scss';
 import React, { useEffect, useState } from 'react';
-import './Category.scss';
-
+import { useSnackbar } from 'notistack';
+import paymentApi from 'api/paymentApi';
+import Table from 'components/Table/Table';
 const MODE = {
   CREATE: 'create',
   UPDATE: 'update',
 };
 
-function Category() {
-  const [categoryList, setCategoryList] = useState();
+function Payments(props) {
+  const [paymentList, setPaymentList] = useState();
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState(MODE.CREATE);
-  const [category, setCategory] = useState();
+  const [payment, setPayment] = useState();
   const [confirmDialog, setConfirmDialog] = useState({
     isOpened: false,
     title: '',
@@ -28,7 +27,7 @@ function Category() {
   });
   const { enqueueSnackbar } = useSnackbar();
 
-  const categoryHead = ['ID', 'Name', 'Thumbnail', 'Actions'];
+  const paymentHead = ['ID', 'Name', 'type'];
 
   const renderHead = (item, index) => <th key={index}>{item}</th>;
 
@@ -49,10 +48,10 @@ function Category() {
           onClick={() => {
             setConfirmDialog({
               isOpened: true,
-              title: 'Are you sure to delete this category?',
+              title: 'Are you sure to delete this payment?',
               subTitle: "You can't undo this operation",
               onConfirm: () => {
-                handleRemoveCategory(item);
+                handleRemovepayment(item);
               },
             });
           }}
@@ -67,7 +66,7 @@ function Category() {
   };
 
   const handleUpdateOpen = (item) => {
-    setCategory(item);
+    setPayment(item);
     setMode(MODE.UPDATE);
     setOpen(true);
   };
@@ -76,17 +75,17 @@ function Category() {
     setOpen(false);
   };
 
-  const handleRemoveCategory = async (item) => {
+  const handleRemovepayment = async (item) => {
     setConfirmDialog({
       ...confirmDialog,
       isOpened: false,
     });
     try {
-      await categoryApi.remove(item.id);
+      await paymentApi.remove(item.id);
 
       handleClose();
 
-      enqueueSnackbar('Delete category successfully.', {
+      enqueueSnackbar('Delete payment successfully.', {
         variant: 'success',
         anchorOrigin: {
           horizontal: 'right',
@@ -108,33 +107,31 @@ function Category() {
   useEffect(() => {
     (async () => {
       try {
-        const list = await categoryApi.getAll();
-        // const getApi = 'https://localhost:44306/Product';
-        // axios.get(getApi).then((response) => {});
-        setCategoryList(
+        const list = await paymentApi.getAll();
+        setPaymentList(
           list.map((x) => ({
             id: x.id,
             name: x.name,
-            thumbnail: x.imagePath,
+            type: x.type,
           }))
         );
       } catch (error) {
-        console.log('Failed to fetch category list', error);
+        console.log('Failed to fetch payment list', error);
       }
     })();
   }, []);
 
   return (
     <div className="category">
-      <h3 className="category__header">Categories</h3>
+      <h3 className="category__header">Payments</h3>
       <Grid container>
         <Grid item lg={12} xs={12}>
           <div className="category__card">
             <div className="category__card__body">
               <Table
-                headData={categoryHead}
+                headData={paymentHead}
                 renderHead={(item, index) => renderHead(item, index)}
-                bodyData={categoryList}
+                bodyData={paymentList}
                 renderBody={(item, index) => renderBody(item, index)}
               />
               <div className="category__add">
@@ -144,7 +141,7 @@ function Category() {
                 >
                   <i className="fas fa-plus category__add-icon"></i>
                   <span className="category__add-button__title">
-                    Add New Category
+                    Add New payment
                   </span>
                 </button>
               </div>
@@ -162,10 +159,10 @@ function Category() {
           <Close />
         </IconButton>
         <DialogContent>
-          {mode === MODE.CREATE && <AddCategory closeDialog={handleClose} />}
+          {mode === MODE.CREATE && <AddPayment closeDialog={handleClose} />}
 
           {mode === MODE.UPDATE && (
-            <UpdateCategory closeDialog={handleClose} category={category} />
+            <UpdatePayment closeDialog={handleClose} payment={payment} />
           )}
         </DialogContent>
       </Dialog>
@@ -178,4 +175,4 @@ function Category() {
   );
 }
 
-export default Category;
+export default Payments;

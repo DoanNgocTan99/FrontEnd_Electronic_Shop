@@ -44,6 +44,7 @@ function ProductInfor(props) {
     axios.post(url, data).then((response) => {
       setOpen(true);
     });
+    props.changeCount(quantity)
   };
 
   return (

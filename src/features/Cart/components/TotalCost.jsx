@@ -1,11 +1,14 @@
 import { Box, Button, Grid, makeStyles } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { formatPrice } from 'utils';
 import { cartTotalSelector } from '../selectors';
 import Confirm from '../../../components/Confirm';
 import s from './style.module.scss';
+import axios from 'axios';
 import { removeAllCart } from '../cartSlice';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 TotalCost.propTypes = {};
 
@@ -38,26 +41,54 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TotalCost() {
+function TotalCost(props) {
   const classes = useStyles();
   const cartTotal = useSelector(cartTotalSelector);
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
   const [deleteAll, setDeleteAll] = useState(false);
+  const [listPaymentName, setListPaymentName] = useState();
+  const listIdCart = [];
+  const listPayment = [];
+  const [namePayment, setNamePayment] = useState('');
+  useEffect(() => {
+    (async () => {
+      const getApi = `https://localhost:44306/Payment`;
+      axios.get(getApi).then((response) => {
+        response.data.map((e) => listPayment.push(e.name));
+      });
+      setListPaymentName(listPayment);
+    })();
+  }, []);
 
   function showBox() {
+    props.products.map((e) => listIdCart.push(e.id));
+    const data = {
+      listId: listIdCart,
+      userId: props.products[0]?.userId,
+      total: total,
+      payment: namePayment,
+    };
+    const getApi = `https://localhost:44306/Orders`;
+    axios.post(getApi, data).then((response) => {
+      if (response.data === 'Đặt thành công sản phẩm') {
+        const getApiDel = `https://localhost:44306/Cart/Delete?id=${props.products[0]?.userId}`;
+        axios.delete(getApiDel, data).then((response) => {
+          console.log(response.data);
+        });
+      }
+    });
     setDeleteAll(true);
-    dispatch(removeAllCart());
   }
 
-  // function closeBox() {
-  //   setDeleteAll(false);
-  // }
-
-  // function deleteAllCart() {
-  //   setDeleteAll(false);
-  // }
-
+  const total = props.products.reduce(
+    (prevValue, currentValue, _) =>
+      prevValue + currentValue.product_Price * currentValue.count,
+    0
+  );
+  const SetValuePayment = (e) => {
+    setNamePayment(e.target.innerText);
+  };
   return (
     <Box>
       <Grid container className={classes.box}>
@@ -66,7 +97,7 @@ function TotalCost() {
         </div>
         <div container className={classes.root}>
           {' '}
-          {!isNaN(cartTotal) ? formatPrice(cartTotal) : formatPrice(0)}{' '}
+          {!isNaN(total) ? formatPrice(total) : formatPrice(0)}{' '}
         </div>
       </Grid>
       <Grid container className={classes.box}>
@@ -77,6 +108,14 @@ function TotalCost() {
           Không
         </div>
       </Grid>
+      <Autocomplete
+        onChange={SetValuePayment}
+        options={listPaymentName}
+        style={{ width: 300 }}
+        renderInput={(params) => (
+          <TextField {...params} label="Payments" variant="outlined" />
+        )}
+      />
       <Grid container className={classes.boxtotal}>
         <div container className={classes.total}>
           Tổng cộng:{' '}
@@ -97,8 +136,7 @@ function TotalCost() {
       </Button>
       {deleteAll && (
         <div className={s.center}>
-          <Confirm
-          />
+          <Confirm />
         </div>
       )}
     </Box>

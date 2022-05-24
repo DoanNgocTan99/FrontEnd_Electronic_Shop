@@ -4,7 +4,7 @@ import StorageKeys from 'constants/storage-keys';
 import React, { useEffect } from 'react';
 import { Route, Switch, useHistory } from 'react-router-dom';
 import Category from '../components/Category/Category';
-import Coupon from '../components/Coupon/Coupon';
+import Coupon from '../components/Payment/Payments';
 import Customer from '../components/Customer/Customer';
 import Dashboard from '../components/Dashboard/Dashboard';
 import Order from '../components/Order/Order';
@@ -20,7 +20,7 @@ function AdminPage(props) {
   useEffect(() => {
     const token = localStorage.getItem(StorageKeys.TOKEN);
     if (!token) {
-      history.replace('/login');
+      history.replace('/login1');
     }
   });
 
@@ -38,7 +38,7 @@ function AdminPage(props) {
             <Category />
           </Route>
 
-          <Route path="/admin/customers">
+          <Route path="/admin/payments">
             <Customer />
           </Route>
 

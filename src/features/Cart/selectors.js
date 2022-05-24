@@ -5,7 +5,7 @@ const cartItemsSelector = (state) => state.cart.cartItems;
 export const cartItemsCountSelector = createSelector(
   cartItemsSelector,
   (cartItems) => cartItems.reduce((count, item) => count + item.count, 0)
-);
+); 
 
 export const cartTotalSelector = createSelector(
   cartItemsSelector,

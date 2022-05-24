@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 function CartFeature() {
   const [count, setCount] = useState();
   const [userId, setUserId] = useState();
-
+  const [products, setProducts] = useState([])
   const classes = useStyles();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -47,7 +47,6 @@ function CartFeature() {
       getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/-1`;
     }
     axios.get(getApi).then((response) => {
-      console.log(response.data);
       setCount(response.data);
     });
   }, [userId]);
@@ -56,10 +55,8 @@ function CartFeature() {
     dispatch(action);
   };
 
-  const handleChangeQuantity = (product) => {
-    const action = setQuantity(product);
-    setCount(product.count);
-    dispatch(action);
+  const handleChangeQuantity = (products) => {
+    setProducts(products)
   };
 
   return (
@@ -84,7 +81,7 @@ function CartFeature() {
             </Grid>
             <Paper elevation={0}>
               <Grid item className={classes.right}>
-                <TotalCost />
+                <TotalCost products={products} />
               </Grid>
             </Paper>
           </Grid>
