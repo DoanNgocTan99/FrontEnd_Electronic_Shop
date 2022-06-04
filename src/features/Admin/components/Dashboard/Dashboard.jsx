@@ -1,12 +1,13 @@
 import { Button, Grid } from '@material-ui/core';
-import statusCards from 'assets/data/card-data.json';
+// import statusCards from 'assets/data/card-data.json';
 import StatusCard from 'components/StatusCard/StatusCard';
 import Table from 'components/Table/Table';
-import React from 'react';
 import Chart from 'react-apexcharts';
 import { Link } from 'react-router-dom';
 import { formatPrice } from 'utils';
 import './Dashboard.scss';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const chartOptions = {
   series: [
@@ -87,9 +88,9 @@ const renderCustomerHead = (item, index) => <th key={index}>{item}</th>;
 
 const renderCustomerBody = (item, index) => (
   <tr key={index}>
-    <td>{item.username}</td>
-    <td>{item.order}</td>
-    <td>{item.price}</td>
+    <td>{item.userName}</td>
+    <td>{item.totalOrders}</td>
+    <td>{item.totalSpending}</td>
   </tr>
 );
 
@@ -139,16 +140,17 @@ const orderStatus = {
   pending: 'secondary',
   paid: 'default',
   refund: 'secondary',
+  Unknown: 'default',
 };
 
 const renderOrderHead = (item, index) => <th key={index}>{item}</th>;
 
 const renderOrderBody = (item, index) => (
   <tr key={index}>
-    <td>{item.id}</td>
-    <td>{item.user}</td>
+    <td>{item.orderId}</td>
+    <td>{item.userName}</td>
     <td>{item.date}</td>
-    <td>{item.price}</td>
+    <td>{item.totalPrice}</td>
     <td>
       <Button
         variant="contained"
@@ -163,13 +165,36 @@ const renderOrderBody = (item, index) => (
 );
 
 function Dashboard() {
+  const [statistical, setStatistical] = useState([]);
+  const [topCustome, setTopCustome] = useState();
+  const [latestOrder, setLatestOrders] = useState();
+  useEffect(() => {
+    const getApi = 'https://localhost:44306/Statistical';
+    axios.get(getApi).then((response) => {
+      setStatistical(response.data);
+    });
+
+    const getApiTopCustomes =
+      'https://localhost:44306/Statistical/GetTopCustomers';
+    axios.get(getApiTopCustomes).then((response) => {
+      setTopCustome(response.data);
+    });
+
+    const getApiLatestOrders =
+      'https://localhost:44306/Statistical/GetLatestOrders';
+    axios.get(getApiLatestOrders).then((response) => {
+      setLatestOrders(response.data);
+      console.log(response.data);
+    });
+  }, []);
+
   return (
     <div className="dashboard">
       <h3 className="dashboard__header">Dashboard</h3>
       <Grid container spacing={3}>
         <Grid item lg={6} xs={12}>
           <Grid container spacing={3}>
-            {statusCards.map((item, index) => (
+            {statistical.map((item, index) => (
               <Grid item lg={6} xs={6}>
                 <StatusCard
                   icon={item.icon}
@@ -199,7 +224,7 @@ function Dashboard() {
               <Table
                 headData={topCustomers.header}
                 renderHead={(item, index) => renderCustomerHead(item, index)}
-                bodyData={topCustomers.body}
+                bodyData={topCustome}
                 renderBody={(item, index) => renderCustomerBody(item, index)}
               />
             </div>
@@ -217,7 +242,7 @@ function Dashboard() {
               <Table
                 headData={latestOrders.header}
                 renderHead={(item, index) => renderOrderHead(item, index)}
-                bodyData={latestOrders.body}
+                bodyData={latestOrder}
                 renderBody={(item, index) => renderOrderBody(item, index)}
               />
             </div>
