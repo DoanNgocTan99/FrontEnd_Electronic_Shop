@@ -90,7 +90,7 @@ const renderCustomerBody = (item, index) => (
   <tr key={index}>
     <td>{item.userName}</td>
     <td>{item.totalOrders}</td>
-    <td>{item.totalSpending}</td>
+    <td>{formatPrice(item.totalSpending)}</td>
   </tr>
 );
 
@@ -150,7 +150,7 @@ const renderOrderBody = (item, index) => (
     <td>{item.orderId}</td>
     <td>{item.userName}</td>
     <td>{item.date}</td>
-    <td>{item.totalPrice}</td>
+    <td>{formatPrice(item.totalPrice)}</td>
     <td>
       <Button
         variant="contained"
@@ -187,10 +187,18 @@ function Dashboard() {
       console.log(response.data);
     });
   }, []);
+  const handleClickOpen = () => {
+    const exportExcel = 'https://localhost:44306/Statistical/GetFileExcel';
+    axios.get(exportExcel).then((response) => {
+      console.log(response.data);
+    });
+  };
 
   return (
     <div className="dashboard">
-      <h3 className="dashboard__header">Dashboard</h3>
+      <button className="top-bar__button" onClick={() => handleClickOpen()}>
+        Export Excel
+      </button>
       <Grid container spacing={3}>
         <Grid item lg={6} xs={12}>
           <Grid container spacing={3}>

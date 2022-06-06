@@ -16,7 +16,7 @@
   },
   {
     "name": "Customers",
-    "route": "/admin/customers",
+    "route": "/admin/Customer",
     "icon": "fa fa-user"
   },
   {
@@ -25,8 +25,8 @@
     "icon": "fas fa-calendar-check"
   },
   {
-    "name": "Coupons",
-    "route": "/admin/coupons",
+    "name": "Payments",
+    "route": "/admin/Payments",
     "icon": "fa fa-gift"
   },
   {

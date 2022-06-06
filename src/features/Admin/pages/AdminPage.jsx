@@ -7,6 +7,8 @@ import Category from '../components/Category/Category';
 import Coupon from '../components/Payment/Payments';
 import Customer from '../components/Customer/Customer';
 import Dashboard from '../components/Dashboard/Dashboard';
+import Payments from '../components/Payment/Payments';
+
 import Order from '../components/Order/Order';
 import Product from '../components/Product/Product';
 import Setting from '../components/Setting/Setting';
@@ -39,15 +41,15 @@ function AdminPage(props) {
           </Route>
 
           <Route path="/admin/payments">
-            <Customer />
+            <Payments />
           </Route>
 
           <Route path="/admin/products">
             <Product />
           </Route>
 
-          <Route path="/admin/coupons">
-            <Coupon />
+          <Route path="/admin/customer">
+            <Customer />
           </Route>
 
           <Route path="/admin/orders">
