@@ -47,7 +47,7 @@ function TopBar(props) {
       <div className="top-bar__wrapper">
         <div className="top-bar__left">
           <Link to="/admin" className="top-bar__logo">
-            <span>PickBazar</span>
+            <span>Electronic Shop</span>
           </Link>
         </div>
         <div className="top-bar__right">

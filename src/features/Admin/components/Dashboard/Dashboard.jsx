@@ -8,6 +8,9 @@ import { formatPrice } from 'utils';
 import './Dashboard.scss';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import MuiAlert from '@material-ui/lab/Alert';
+
+const Alert = (props) => <MuiAlert elevation={6} variant="filled" {...props} />;
 
 const chartOptions = {
   series: [
@@ -167,7 +170,9 @@ const renderOrderBody = (item, index) => (
 function Dashboard() {
   const [statistical, setStatistical] = useState([]);
   const [topCustome, setTopCustome] = useState();
-  const [latestOrder, setLatestOrders] = useState();
+  const [latestOrder, setLatestOrders] = useState([]);
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
     const getApi = 'https://localhost:44306/Statistical';
     axios.get(getApi).then((response) => {
@@ -184,21 +189,32 @@ function Dashboard() {
       'https://localhost:44306/Statistical/GetLatestOrders';
     axios.get(getApiLatestOrders).then((response) => {
       setLatestOrders(response.data);
-      console.log(response.data);
     });
   }, []);
   const handleClickOpen = () => {
     const exportExcel = 'https://localhost:44306/Statistical/GetFileExcel';
     axios.get(exportExcel).then((response) => {
       console.log(response.data);
+      setOpen(true);
     });
   };
-
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
   return (
     <div className="dashboard">
+      {open && (
+        <Alert onClose={handleClose} severity="success">
+          Download excel thành công!!!
+        </Alert>
+      )}
       <button className="top-bar__button" onClick={() => handleClickOpen()}>
         Export Excel
       </button>
+
       <Grid container spacing={3}>
         <Grid item lg={6} xs={12}>
           <Grid container spacing={3}>
@@ -237,7 +253,7 @@ function Dashboard() {
               />
             </div>
             <div className="dashboard__card__footer">
-              <Link to="/admin">view all</Link>
+              <Link to="/admin/Customer">view all</Link>
             </div>
           </div>
         </Grid>
@@ -255,7 +271,7 @@ function Dashboard() {
               />
             </div>
             <div className="dashboard__card__footer">
-              <Link to="/admin">view all</Link>
+              <Link to="/admin/orders">view all</Link>
             </div>
           </div>
         </Grid>

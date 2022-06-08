@@ -9,6 +9,8 @@ import { addToCart } from 'features/Cart/cartSlice';
 import { Snackbar } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 
+import Rating from '@mui/material/Rating';
+
 const Alert = (props) => <MuiAlert elevation={6} variant="filled" {...props} />;
 
 function ProductInfor(props) {
@@ -44,7 +46,7 @@ function ProductInfor(props) {
     axios.post(url, data).then((response) => {
       setOpen(true);
     });
-    props.changeCount(quantity)
+    props.changeCount(quantity);
   };
 
   return (
@@ -62,6 +64,13 @@ function ProductInfor(props) {
       <h4 className={styles.ProductName}>{product?.name}</h4>
       <h5 className={styles.ProductBand}>{product?.brand}</h5>
       <p className={styles.ProductDescription}>{product?.description}</p>
+      <h5 className={styles.ProductBand}>Đánh giá: </h5>
+      <Rating
+        className={styles.Rating}
+        name="read-only"
+        value={Number(product?.rate)}
+        readOnly
+      />
       <div className={styles.ProductTable}>
         <div className={styles.ProductTableRow}>
           <span className={styles.ProductItem}>Brand</span>
@@ -76,7 +85,7 @@ function ProductInfor(props) {
           <span className={styles.ProductItem}>{product?.origin}</span>
         </div>
         <div className={styles.ProductTableRow}>
-          <span className={styles.ProductItem}>Số lượng mua</span>
+          <span className={styles.ProductItem}>Lượt xem</span>
           <span className={styles.ProductItem}>{product?.views}</span>
         </div>
       </div>

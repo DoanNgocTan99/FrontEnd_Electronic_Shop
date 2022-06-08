@@ -2,7 +2,7 @@ import axiosClient from './axiosClient';
 
 const categoryApi = {
   getAll(params) {
-    const url = '/Statistical/GetTopCustomers';
+    const url = '/Statistical/GetFullTopCustomers';
     return axiosClient.get(url, { params });
   },
   getFullLatestOrders(params) {
