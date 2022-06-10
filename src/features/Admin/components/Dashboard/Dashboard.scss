@@ -43,19 +43,36 @@
     height: 100%;
   }
 }
-
+.div_left {
+  width: 200px;
+  margin: 15px 15px 10px 10px;
+  float: left;
+  text-align: center;
+}
+.div_left_cus {
+  width: 50px;
+  margin: 15px 0 10px 0;
+  float: left;
+  text-align: center;
+}
+.div_right {
+  width: 200px;
+  margin: 15px 15px 10px 10px;
+  float: left;
+  text-align: center;
+}
 @media (max-width: 764px) {
-  .dashboard{
-    width:77%;
+  .dashboard {
+    width: 77%;
     padding: 30px 15px 24px 15px;
   }
-   .top-bar__button{
-  height: 39px;
-  width: 99px;
-  padding: 13px 0px;
-  line-height: 16px;
-  margin-right: 25px;
- }
+  .top-bar__button {
+    height: 39px;
+    width: 99px;
+    padding: 13px 0px;
+    line-height: 16px;
+    margin-right: 25px;
+  }
 }
 // .dashboard__card.dashboard__full-height {
 //   height: calc(100% - 24px);

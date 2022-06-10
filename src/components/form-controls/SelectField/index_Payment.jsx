@@ -29,7 +29,7 @@ function SelectFieldPayment(props) {
   useEffect(() => {
     (async () => {
       try {
-        const getApi = `https://localhost:44306/Payment`;
+        const getApi = `https://electronic-api.azurewebsites.net/Payment`;
         axios.get(getApi).then((response) => {
           setCategoryList(
             response.data.map((x) => ({

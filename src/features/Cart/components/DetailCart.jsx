@@ -79,7 +79,7 @@ function DetailCart({ onRemove = null, onChange = null }) {
     setOpen(false);
   };
   useEffect(() => {
-    const getApi = `https://localhost:44306/Cart/GetListCartByIdUser/${id}`;
+    const getApi = `https://electronic-api.azurewebsites.net/Cart/GetListCartByIdUser/${id}`;
     axios.get(getApi).then((response) => {
       setCartItems(response.data);
       onChange(response.data);
@@ -87,7 +87,7 @@ function DetailCart({ onRemove = null, onChange = null }) {
   }, []);
 
   const handleRemoveItem = (productId) => {
-    const getApi = `https://localhost:44306/Cart/Delete?id=${productId}`;
+    const getApi = `https://electronic-api.azurewebsites.net/Cart/Delete?id=${productId}`;
     axios.delete(getApi).then((response) => {
       setOpen(true);
     });
@@ -95,14 +95,14 @@ function DetailCart({ onRemove = null, onChange = null }) {
 
   const handleChangeQuantity = (product) => {
     if (!onChange) return;
-    const newCartItem = cartItems.map(item => {
+    const newCartItem = cartItems.map((item) => {
       if (item.id === product.id) {
-        item.count = product.count
+        item.count = product.count;
       }
-      return item
-    })
+      return item;
+    });
     setCartItems(newCartItem);
-    onChange(newCartItem)
+    onChange(newCartItem);
   };
 
   return (

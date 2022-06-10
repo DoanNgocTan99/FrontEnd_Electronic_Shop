@@ -30,7 +30,7 @@ function ProductInfor(props) {
   useEffect(() => {
     setIdUser(localStorage.getItem('userid'));
     if (id) {
-      const getApi = `https://localhost:44306/Product/${id}`;
+      const getApi = `https://electronic-api.azurewebsites.net/Product/${id}`;
       axios.get(getApi).then((response) => {
         setProduct(response.data);
       });
@@ -42,7 +42,7 @@ function ProductInfor(props) {
       userId: idUser,
       productId: product.id,
     };
-    const url = `https://localhost:44306/Cart/Create`;
+    const url = `https://electronic-api.azurewebsites.net/Cart/Create`;
     axios.post(url, data).then((response) => {
       setOpen(true);
     });

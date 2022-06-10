@@ -35,16 +35,16 @@ const useStyles = makeStyles((theme) => ({
 function CartFeature() {
   const [count, setCount] = useState();
   const [userId, setUserId] = useState();
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState([]);
   const classes = useStyles();
   const dispatch = useDispatch();
   useEffect(() => {
     setUserId(localStorage.getItem('userid'));
     var getApi = '';
     if (userId !== undefined) {
-      getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/${userId}`;
+      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
     } else {
-      getApi = `https://localhost:44306/Cart/GetCountProductByIdUser/-1`;
+      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
     }
     axios.get(getApi).then((response) => {
       setCount(response.data);
@@ -56,7 +56,7 @@ function CartFeature() {
   };
 
   const handleChangeQuantity = (products) => {
-    setProducts(products)
+    setProducts(products);
   };
 
   return (

@@ -29,7 +29,7 @@ function SelectFieldBrand(props) {
   useEffect(() => {
     (async () => {
       try {
-        const getApi = `https://localhost:44306/Brand`;
+        const getApi = `https://electronic-api.azurewebsites.net/Brand`;
         axios.get(getApi).then((response) => {
           setCategoryList(
             response.data.map((x) => ({
@@ -39,7 +39,6 @@ function SelectFieldBrand(props) {
           );
         });
         // const list = await categoryApi.getAll();
-        
       } catch (error) {
         console.log('Failed to fetch category list', error);
       }

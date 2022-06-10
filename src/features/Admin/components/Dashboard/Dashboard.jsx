@@ -1,4 +1,5 @@
 import { Button, Grid } from '@material-ui/core';
+import DatePicker from 'react-date-picker';
 // import statusCards from 'assets/data/card-data.json';
 import StatusCard from 'components/StatusCard/StatusCard';
 import Table from 'components/Table/Table';
@@ -172,32 +173,45 @@ function Dashboard() {
   const [topCustome, setTopCustome] = useState();
   const [latestOrder, setLatestOrders] = useState([]);
   const [open, setOpen] = useState(false);
+  const [fromDate, setFromDate] = useState();
+  const [toDate, setToDate] = useState();
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const value = {
+      fromDate: fromDate,
+      toDate: toDate,
+    };
+    const exportExcel =
+      'https://electronic-api.azurewebsites.net/Statistical/GetFileExcel';
+    axios.post(exportExcel, value).then((response) => {
+      setOpen(true);
+    });
+  };
+  const onChangeFromDate = (e) => {
+    setFromDate(e.target.value);
+  };
+  const onChangeToDate = (e) => {
+    setToDate(e.target.value);
+  };
   useEffect(() => {
-    const getApi = 'https://localhost:44306/Statistical';
+    const getApi = 'https://electronic-api.azurewebsites.net/Statistical';
     axios.get(getApi).then((response) => {
       setStatistical(response.data);
     });
 
     const getApiTopCustomes =
-      'https://localhost:44306/Statistical/GetTopCustomers';
+      'https://electronic-api.azurewebsites.net/Statistical/GetTopCustomers';
     axios.get(getApiTopCustomes).then((response) => {
       setTopCustome(response.data);
     });
 
     const getApiLatestOrders =
-      'https://localhost:44306/Statistical/GetLatestOrders';
+      'https://electronic-api.azurewebsites.net/Statistical/GetLatestOrders';
     axios.get(getApiLatestOrders).then((response) => {
       setLatestOrders(response.data);
     });
   }, []);
-  const handleClickOpen = () => {
-    const exportExcel = 'https://localhost:44306/Statistical/GetFileExcel';
-    axios.get(exportExcel).then((response) => {
-      console.log(response.data);
-      setOpen(true);
-    });
-  };
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -211,9 +225,25 @@ function Dashboard() {
           Download excel thành công!!!
         </Alert>
       )}
-      <button className="top-bar__button" onClick={() => handleClickOpen()}>
-        Export Excel
-      </button>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <div>
+          <h5 className="div_left_cus">From</h5>
+          <input
+            className="div_left"
+            type="date"
+            name="name"
+            onChange={onChangeFromDate}
+          />
+          <h5 className="div_left_cus">To</h5>
+          <input
+            className="div_left"
+            type="date"
+            name="name"
+            onChange={onChangeToDate}
+          />
+        </div>
+        <button className="top-bar__button">Export Excel</button>
+      </form>
 
       <Grid container spacing={3}>
         <Grid item lg={6} xs={12}>

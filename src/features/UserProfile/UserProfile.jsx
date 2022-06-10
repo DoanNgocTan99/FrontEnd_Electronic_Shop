@@ -53,7 +53,7 @@ function UserProfile(props) {
 
   useEffect(() => {
     setId(localStorage.getItem('userid'));
-    const getApi = `https://localhost:44306/User/${id}`;
+    const getApi = `https://electronic-api.azurewebsites.net/User/${id}`;
     axios.get(getApi).then((response) => {
       setUser(response.data);
       setFullName(response.data.fullName);
@@ -77,7 +77,7 @@ function UserProfile(props) {
     formData.append('address', address);
     formData.append('imageFile', imageFile);
 
-    const getApi = `https://localhost:44306/User/Update/${id}`;
+    const getApi = `https://electronic-api.azurewebsites.net/User/Update/${id}`;
     axios.put(getApi, formData).then((response) => {
       if (response.status === 200) {
         setMess(true);

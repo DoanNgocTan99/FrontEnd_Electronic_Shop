@@ -16,7 +16,7 @@ function ProductRelated(props) {
       categoryName: props.proDetail[1],
     };
     console.log(paramsString);
-    const getApi = `https://localhost:44306/Product/ProductRelated`;
+    const getApi = `https://electronic-api.azurewebsites.net/Product/ProductRelated`;
     axios.post(getApi, paramsString).then((response) => {
       setProducts(response.data);
     });

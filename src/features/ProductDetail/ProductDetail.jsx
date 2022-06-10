@@ -21,28 +21,27 @@ function ProductDetail(props) {
   const [count, setCount] = useState();
   useEffect(() => {
     if (id) {
-      const getApi = `https://localhost:44306/Product/${id}`;
+      const getApi = `https://electronic-api.azurewebsites.net/Product/${id}`;
       axios.get(getApi).then((response) => {
         setproduct(response.data);
       });
       const userId = localStorage.getItem('userid');
       if (userId !== undefined) {
-        const getApii = `https://localhost:44306/Cart/GetCountProductByIdUser/${userId}`;
+        const getApii = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
         axios.get(getApii).then((response) => {
           setCount(response.data);
         });
       } else {
-        const getApii = `https://localhost:44306/Cart/GetCountProductByIdUser/-1`;
+        const getApii = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
         axios.get(getApii).then((response) => {
           setCount(response.data);
         });
       }
-      
     }
   }, [id]);
 
   const changeCountHandler = (quantity) => {
-    setCount(prev => prev + quantity)
+    setCount((prev) => prev + quantity);
   };
 
   return (
