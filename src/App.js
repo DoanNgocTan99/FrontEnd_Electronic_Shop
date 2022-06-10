@@ -1,6 +1,7 @@
 import AdminFeature from 'features/Admin';
 import LoginPage from 'features/Auth/pages/LoginPage';
 import CartFeature from 'features/Cart';
+import Register from 'features/Register/Register';
 import { useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -18,6 +19,7 @@ function App() {
         <Route path="/cart" component={CartFeature} />
         <Route path="/productDetails/:id" exact component={ProductDetail} />
         <Route path="/userProfile" component={UserProfile} />
+        <Route path="/register" component={Register} />
 
         {adminState.current?.role === 'ADMIN' && (
           <Route path="/admin" component={AdminFeature} />

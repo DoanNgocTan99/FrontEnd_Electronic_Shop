@@ -71,7 +71,9 @@ function UserLoginForm({ onSubmit = null }) {
       history.push('/');
     }
   };
-
+  const RegisterClick = (res) => {
+    history.push('/register');
+  };
   const { isSubmitting } = form.formState;
   return (
     <div className={styles.loginForm}>
@@ -96,7 +98,9 @@ function UserLoginForm({ onSubmit = null }) {
           </Button>
         </div>
         <div className={styles.text_center}>
-          <span>Or Sign Up Using</span>
+          <a onClick={RegisterClick}>
+            <span>Or Sign Up </span>
+          </a>
         </div>
         <div className={styles.icon}>
           <div className={styles.social_media}>

@@ -1,6 +1,4 @@
-import { Button, Grid } from '@material-ui/core';
-import DatePicker from 'react-date-picker';
-// import statusCards from 'assets/data/card-data.json';
+import { Button, Grid, Snackbar } from '@material-ui/core';
 import StatusCard from 'components/StatusCard/StatusCard';
 import Table from 'components/Table/Table';
 import Chart from 'react-apexcharts';
@@ -220,11 +218,18 @@ function Dashboard() {
   };
   return (
     <div className="dashboard">
-      {open && (
-        <Alert onClose={handleClose} severity="success">
-          Download excel thành công!!!
-        </Alert>
-      )}
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+      >
+        {open && (
+          <Alert onClose={handleClose} severity="success">
+            Download excel thành công!!!
+          </Alert>
+        )}
+      </Snackbar>
       <form onSubmit={(e) => handleSubmit(e)}>
         <div>
           <h5 className="div_left_cus">From</h5>
