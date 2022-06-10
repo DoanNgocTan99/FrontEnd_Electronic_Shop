@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/multishop/static/css/main.a3e072b6.chunk.css",
+    "main.js": "/multishop/static/js/main.d8f563fe.chunk.js",
+    "main.js.map": "/multishop/static/js/main.d8f563fe.chunk.js.map",
+    "runtime-main.js": "/multishop/static/js/runtime-main.6fa2393c.js",
+    "runtime-main.js.map": "/multishop/static/js/runtime-main.6fa2393c.js.map",
+    "static/css/2.2b49a53a.chunk.css": "/multishop/static/css/2.2b49a53a.chunk.css",
+    "static/js/2.80c22fc9.chunk.js": "/multishop/static/js/2.80c22fc9.chunk.js",
+    "static/js/2.80c22fc9.chunk.js.map": "/multishop/static/js/2.80c22fc9.chunk.js.map",
+    "static/js/3.f55dc94a.chunk.js": "/multishop/static/js/3.f55dc94a.chunk.js",
+    "static/js/3.f55dc94a.chunk.js.map": "/multishop/static/js/3.f55dc94a.chunk.js.map",
+    "index.html": "/multishop/index.html",
+    "static/css/2.2b49a53a.chunk.css.map": "/multishop/static/css/2.2b49a53a.chunk.css.map",
+    "static/css/main.a3e072b6.chunk.css.map": "/multishop/static/css/main.a3e072b6.chunk.css.map",
+    "static/js/2.80c22fc9.chunk.js.LICENSE.txt": "/multishop/static/js/2.80c22fc9.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6fa2393c.js",
+    "static/css/2.2b49a53a.chunk.css",
+    "static/js/2.80c22fc9.chunk.js",
+    "static/css/main.a3e072b6.chunk.css",
+    "static/js/main.d8f563fe.chunk.js"
+  ]
+}
