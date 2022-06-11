@@ -16,6 +16,7 @@ function App() {
     <div>
       <Switch>
         <Route path="/" exact component={Product} />
+        <Route path="/FrontEnd_Electronic_Shop" exact component={Product} />
         <Route path="/cart" component={CartFeature} />
         <Route path="/productDetails/:id" exact component={ProductDetail} />
         <Route path="/userProfile" component={UserProfile} />
