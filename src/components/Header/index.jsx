@@ -63,6 +63,9 @@ function NavBar() {
     history.push('/login1');
     setIsLogin(true);
   };
+  const handleAdminPage = () => {
+    history.push('/admin');
+  };
   const handleUserProfile = () => {
     history.push('/userProfile');
   };
@@ -102,6 +105,13 @@ function NavBar() {
                 <li className={styles.nav__menuitems}>
                   <div href="">Đơn mua</div>
                 </li>
+                {localStorage.getItem('role') === 'ADMIN' ? (
+                  <li className={styles.nav__menuitems}>
+                    <div onClick={handleAdminPage}>Admin Page</div>
+                  </li>
+                ) : (
+                  <li className={styles.nav__menuitems}></li>
+                )}
               </>
             )}
             <li className={styles.nav__menuitems}>
