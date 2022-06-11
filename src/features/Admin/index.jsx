@@ -8,6 +8,7 @@ function AdminFeature(props) {
   const match = useRouteMatch();
   return (
     <div>
+      <title>Admin</title>
       <Switch>
         <Route path={match.url} component={AdminPage} />
       </Switch>

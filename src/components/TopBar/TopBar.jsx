@@ -35,6 +35,10 @@ function TopBar(props) {
     setAnchorEl(null);
   };
 
+  const handleProfileClick = () => {
+    history.push('/userProfile');
+  };
+
   const handleLogoutClick = () => {
     const action = logout();
     dispatch(action);
@@ -87,7 +91,7 @@ function TopBar(props) {
         }}
         getContentAnchorEl={null}
       >
-        <MenuItem onClick={handleCloseMenu}>My account</MenuItem>
+        <MenuItem onClick={handleProfileClick}>My account</MenuItem>
         <MenuItem onClick={handleLogoutClick}>Logout</MenuItem>
       </Menu>
 

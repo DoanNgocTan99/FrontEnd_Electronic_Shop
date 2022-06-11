@@ -66,6 +66,8 @@ function CartFeature() {
 
   return (
     <React.Fragment>
+      <title>Card</title>
+
       <NavBar count={count} />
       <Box className={styles.box}>
         <Container>

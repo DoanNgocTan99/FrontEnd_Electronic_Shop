@@ -52,6 +52,8 @@ function ProductDetail(props) {
 
   return (
     <React.Fragment>
+      <title>Detail Product</title>
+
       {loading ? (
         <div className={styles.sweet_loading}>
           <ClipLoader

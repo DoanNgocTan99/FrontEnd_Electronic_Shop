@@ -103,6 +103,8 @@ function UserProfile(props) {
   };
   return (
     <React.Fragment>
+      <title>Profile User</title>
+
       {loading ? (
         <div className={styles.sweet_loading}>
           <ClipLoader

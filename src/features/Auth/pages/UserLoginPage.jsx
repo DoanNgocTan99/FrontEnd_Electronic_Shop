@@ -1,12 +1,13 @@
 import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router-dom';
-import UserLogin from '../components/UserLogin/UserLogin'
+import UserLogin from '../components/UserLogin/UserLogin';
 UserLoginPage.propTypes = {};
 
 function UserLoginPage(props) {
   const match = useRouteMatch();
   return (
     <div>
+      <title>Login</title>
       <Switch>
         <Route path={match.url} component={UserLogin} />
       </Switch>

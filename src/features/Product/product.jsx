@@ -80,6 +80,8 @@ function Product(props) {
   };
   return (
     <React.Fragment>
+      <title>Home</title>
+
       {loading ? (
         <div className={styles.sweet_loading}>
           <ClipLoader
