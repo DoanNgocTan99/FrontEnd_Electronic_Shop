@@ -15,11 +15,9 @@ function NavBar() {
   const [cartItemsCount, setCartItemsCount] = useState([]);
   const [userId, setUserId] = useState();
   const [avt, setAvt] = useState();
-  // const cartItemsCount = useSelector(cartItemsCountSelector);
   const avatarUrl = useSelector((state) => state.admin.avatarUrl);
-  // const isLogin =
-  //   useSelector((state) => state.admin.current) === null ? false : true;
   const [isLogin, setIsLogin] = useState(false);
+  const [role, setRole] = useState('USER');
   const CheckLogin = () => {
     if (localStorage.getItem('token') === null) {
       setIsLogin(false);
@@ -35,6 +33,8 @@ function NavBar() {
     }
   };
   useEffect(() => {
+    debugger;
+    setRole(localStorage.getItem('role'));
     setAvt(localStorage.getItem('avarta'));
     var getApi = '';
     if (
@@ -105,12 +105,12 @@ function NavBar() {
                 <li className={styles.nav__menuitems}>
                   <div href="">Đơn mua</div>
                 </li>
-                {localStorage.getItem('role') === 'ADMIN' ? (
+                {role === 'ADMIN' ? (
                   <li className={styles.nav__menuitems}>
                     <div onClick={handleAdminPage}>Admin Page</div>
                   </li>
                 ) : (
-                  <li className={styles.nav__menuitems}></li>
+                  <></>
                 )}
               </>
             )}
