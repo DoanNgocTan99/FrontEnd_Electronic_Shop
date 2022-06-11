@@ -23,7 +23,10 @@ function App() {
         <Route path="/register" component={Register} />
 
         {adminState.current?.role === 'ADMIN' && (
-          <Route path="/admin" component={AdminFeature} />
+          <Route
+            path="/FrontEnd_Electronic_Shop/admin"
+            component={AdminFeature}
+          />
         )}
 
         {adminState.current === null && (

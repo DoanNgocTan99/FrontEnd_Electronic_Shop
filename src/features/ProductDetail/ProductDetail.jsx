@@ -26,13 +26,14 @@ function ProductDetail(props) {
       axios.get(getApi).then((response) => {
         setproduct(response.data);
       });
-      debugger;
       if (
         localStorage.getItem('userid') !== undefined ||
         localStorage.getItem('userid') !== null
       ) {
         const userId = localStorage.getItem('userid');
-        getApii = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
+        getApii = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${localStorage.getItem(
+          'userid'
+        )}`;
         axios.get(getApii).then((response) => {
           setCount(response.data);
         });

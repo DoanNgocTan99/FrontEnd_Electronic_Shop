@@ -39,21 +39,22 @@ function CartFeature() {
   const classes = useStyles();
   const dispatch = useDispatch();
   useEffect(() => {
-    debugger;
     var getApi = '';
     if (
       localStorage.getItem('userid') !== undefined ||
       localStorage.getItem('userid') !== null
     ) {
       setUserId(localStorage.getItem('userid'));
-      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
+      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${localStorage.getItem(
+        'userid'
+      )}`;
     } else {
       getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
     }
     axios.get(getApi).then((response) => {
       setCount(response.data);
     });
-  }, [userId]);
+  });
   const handleRemoveFromCart = (productId) => {
     const action = removeFromCart(productId);
     dispatch(action);

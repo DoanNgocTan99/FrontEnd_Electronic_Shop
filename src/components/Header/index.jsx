@@ -35,7 +35,6 @@ function NavBar() {
     }
   };
   useEffect(() => {
-    debugger;
     setAvt(localStorage.getItem('avarta'));
     var getApi = '';
     if (
@@ -43,7 +42,9 @@ function NavBar() {
       localStorage.getItem('userid') !== null
     ) {
       setUserId(localStorage.getItem('userid'));
-      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
+      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${localStorage.getItem(
+        'userid'
+      )}`;
     } else {
       getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
     }
@@ -51,7 +52,7 @@ function NavBar() {
       setCartItemsCount(response.data);
     });
     CheckLogin();
-  }, []);
+  });
   const handleLogout = () => {
     setIsLogin(false);
     const action = logoutUser();

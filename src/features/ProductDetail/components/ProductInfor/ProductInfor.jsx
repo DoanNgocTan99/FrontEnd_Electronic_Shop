@@ -10,6 +10,7 @@ import { Snackbar } from '@material-ui/core';
 import MuiAlert from '@material-ui/lab/Alert';
 
 import Rating from '@mui/material/Rating';
+import { useHistory } from 'react-router-dom';
 
 const Alert = (props) => <MuiAlert elevation={6} variant="filled" {...props} />;
 
@@ -18,17 +19,14 @@ function ProductInfor(props) {
   const { id } = useParams();
   const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
-  const [idUser, setIdUser] = useState();
-
+  const history = useHistory();
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
     setOpen(false);
   };
-
   useEffect(() => {
-    setIdUser(localStorage.getItem('userid'));
     if (id) {
       const getApi = `https://electronic-api.azurewebsites.net/Product/${id}`;
       axios.get(getApi).then((response) => {
@@ -37,9 +35,15 @@ function ProductInfor(props) {
     }
   }, [id]);
   const handleAddToCartForm = ({ quantity }) => {
+    if (
+      localStorage.getItem('userid') === undefined ||
+      localStorage.getItem('userid') === null
+    ) {
+      history.replace('/login1');
+    }
     const data = {
       count: quantity,
-      userId: idUser,
+      userId: localStorage.getItem('userid'),
       productId: product.id,
     };
     const url = `https://electronic-api.azurewebsites.net/Cart/Create`;

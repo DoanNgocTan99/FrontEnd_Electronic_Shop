@@ -43,13 +43,14 @@ function NavBar(props) {
     CheckLogin();
     if (props.count === undefined) {
       var getApi = '';
-      debugger;
       if (
         localStorage.getItem('userid') !== undefined ||
         localStorage.getItem('userid') !== null
       ) {
         setUserId(localStorage.getItem('userid'));
-        getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
+        getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${localStorage.getItem(
+          'userid'
+        )}`;
       } else {
         console.log('response.data');
         getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
