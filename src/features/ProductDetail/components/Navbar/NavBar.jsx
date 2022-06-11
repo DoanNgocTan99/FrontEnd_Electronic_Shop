@@ -37,20 +37,28 @@ function NavBar(props) {
   const handleUserProfile = () => {
     history.push('/userProfile');
   };
+  // useEffect(() => {
+  //   setUserId(localStorage.getItem('userid'));
+  //   setAvt(localStorage.getItem('avarta'));
+  //   var getApi = '';
+  //   if (userId !== undefined) {
+  //     getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
+  //   } else {
+  //     getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
+  //   }
+  //   axios.get(getApi).then((response) => {
+  //     CheckLogin();
+  //   });
+  // });
 
   useEffect(() => {
+    setUserId(localStorage.getItem('userid'));
     setAvt(localStorage.getItem('avarta'));
     CheckLogin();
     if (props.count === undefined) {
-      var getApi = '';
-      if (
-        localStorage.getItem('userid') !== undefined ||
-        localStorage.getItem('userid') !== null
-      ) {
-        setUserId(localStorage.getItem('userid'));
-        getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${localStorage.getItem(
-          'userid'
-        )}`;
+      if (userId === undefined) {
+        var getApi = '';
+        getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
       } else {
         console.log('response.data');
         getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
