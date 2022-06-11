@@ -26,7 +26,10 @@ function ProductDetail(props) {
         setproduct(response.data);
       });
       const userId = localStorage.getItem('userid');
-      if (userId !== undefined) {
+      if (
+        localStorage.getItem('userid') !== undefined &&
+        localStorage.getItem('userid') !== null
+      ) {
         const getApii = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
         axios.get(getApii).then((response) => {
           setCount(response.data);

@@ -41,7 +41,10 @@ function CartFeature() {
   useEffect(() => {
     setUserId(localStorage.getItem('userid'));
     var getApi = '';
-    if (userId !== undefined) {
+    if (
+      localStorage.getItem('userid') !== undefined &&
+      localStorage.getItem('userid') !== null
+    ) {
       getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
     } else {
       getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
