@@ -35,15 +35,14 @@ function NavBar() {
     }
   };
   useEffect(() => {
-    setUserId(localStorage.getItem('userid'));
+    debugger;
     setAvt(localStorage.getItem('avarta'));
     var getApi = '';
-    debugger;
     if (
       localStorage.getItem('userid') !== undefined &&
       localStorage.getItem('userid') !== null
     ) {
-      debugger;
+      setUserId(localStorage.getItem('userid'));
       getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
     } else {
       getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;

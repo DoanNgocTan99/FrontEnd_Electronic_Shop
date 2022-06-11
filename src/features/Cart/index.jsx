@@ -39,12 +39,13 @@ function CartFeature() {
   const classes = useStyles();
   const dispatch = useDispatch();
   useEffect(() => {
-    setUserId(localStorage.getItem('userid'));
+    debugger;
     var getApi = '';
     if (
-      localStorage.getItem('userid') !== undefined &&
+      localStorage.getItem('userid') !== undefined ||
       localStorage.getItem('userid') !== null
     ) {
+      setUserId(localStorage.getItem('userid'));
       getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
     } else {
       getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;

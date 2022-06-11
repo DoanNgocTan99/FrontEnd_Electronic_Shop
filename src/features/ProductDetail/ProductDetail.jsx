@@ -20,22 +20,24 @@ function ProductDetail(props) {
   const { id } = useParams();
   const [count, setCount] = useState();
   useEffect(() => {
+    var getApii = '';
     if (id) {
       const getApi = `https://electronic-api.azurewebsites.net/Product/${id}`;
       axios.get(getApi).then((response) => {
         setproduct(response.data);
       });
-      const userId = localStorage.getItem('userid');
+      debugger;
       if (
-        localStorage.getItem('userid') !== undefined &&
+        localStorage.getItem('userid') !== undefined ||
         localStorage.getItem('userid') !== null
       ) {
-        const getApii = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
+        const userId = localStorage.getItem('userid');
+        getApii = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
         axios.get(getApii).then((response) => {
           setCount(response.data);
         });
       } else {
-        const getApii = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
+        getApii = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
         axios.get(getApii).then((response) => {
           setCount(response.data);
         });

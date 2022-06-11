@@ -39,15 +39,16 @@ function NavBar(props) {
   };
 
   useEffect(() => {
-    setUserId(localStorage.getItem('userid'));
     setAvt(localStorage.getItem('avarta'));
     CheckLogin();
     if (props.count === undefined) {
       var getApi = '';
+      debugger;
       if (
-        localStorage.getItem('userid') !== undefined &&
+        localStorage.getItem('userid') !== undefined ||
         localStorage.getItem('userid') !== null
       ) {
+        setUserId(localStorage.getItem('userid'));
         getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
       } else {
         console.log('response.data');
