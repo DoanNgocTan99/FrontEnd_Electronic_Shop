@@ -12,16 +12,17 @@ function ProductRelated(props) {
       idProduct: props.proDetail[0],
       categoryName: props.proDetail[1],
     };
+    debugger;
     if (localStorage.getItem('userid') !== undefined) {
-      const getApi = `https://localhost:44306/Rating/${localStorage.getItem(
+      const getApi = `https://electronic-api.azurewebsites.net/Rating/${localStorage.getItem(
         'userid'
       )}`;
-      axios.post(getApi, paramsString).then((response) => {
+      axios.get(getApi).then((response) => {
         setProducts(response.data);
       });
     } else {
-      const getApi = `https://localhost:44306/Rating/1`;
-      axios.post(getApi, paramsString).then((response) => {
+      const getApi = `https://electronic-api.azurewebsites.net/Rating/1`;
+      axios.get(getApi).then((response) => {
         setProducts(response.data);
       });
     }
