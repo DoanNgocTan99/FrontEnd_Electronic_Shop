@@ -13,7 +13,10 @@ function ProductRelated(props) {
       categoryName: props.proDetail[1],
     };
     debugger;
-    if (localStorage.getItem('userid') !== undefined) {
+    if (
+      localStorage.getItem('userid') !== undefined &&
+      localStorage.getItem('userid') !== null
+    ) {
       const getApi = `https://electronic-api.azurewebsites.net/Rating/${localStorage.getItem(
         'userid'
       )}`;
@@ -30,7 +33,7 @@ function ProductRelated(props) {
 
   return (
     <div className={styles}>
-      <div className={styles.header}>Sản phẩm liên quan</div>
+      <div className={styles.header}>Sản phẩm được đề xuất</div>
       <div className={styles.grid__column10}>
         <div className={styles.home__product}>
           <div className={styles.grid__row}>
