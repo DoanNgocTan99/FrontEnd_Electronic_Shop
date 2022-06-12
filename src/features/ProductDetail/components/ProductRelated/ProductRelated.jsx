@@ -12,13 +12,19 @@ function ProductRelated(props) {
       idProduct: props.proDetail[0],
       categoryName: props.proDetail[1],
     };
-    console.log(paramsString);
-    const getApi = `https://localhost:44306/Rating/${localStorage.getItem(
-      'userid'
-    )}`;
-    axios.post(getApi, paramsString).then((response) => {
-      setProducts(response.data);
-    });
+    if (localStorage.getItem('userid') !== undefined) {
+      const getApi = `https://localhost:44306/Rating/${localStorage.getItem(
+        'userid'
+      )}`;
+      axios.post(getApi, paramsString).then((response) => {
+        setProducts(response.data);
+      });
+    } else {
+      const getApi = `https://localhost:44306/Rating/1`;
+      axios.post(getApi, paramsString).then((response) => {
+        setProducts(response.data);
+      });
+    }
   }, [props.proDetail[0]]);
 
   return (
