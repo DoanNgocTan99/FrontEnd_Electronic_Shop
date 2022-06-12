@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/FrontEnd_Electronic_Shop/static/css/main.80e9bcfe.chunk.css",
-    "main.js": "/FrontEnd_Electronic_Shop/static/js/main.5d88f041.chunk.js",
-    "main.js.map": "/FrontEnd_Electronic_Shop/static/js/main.5d88f041.chunk.js.map",
+    "main.js": "/FrontEnd_Electronic_Shop/static/js/main.ae2cb7e0.chunk.js",
+    "main.js.map": "/FrontEnd_Electronic_Shop/static/js/main.ae2cb7e0.chunk.js.map",
     "runtime-main.js": "/FrontEnd_Electronic_Shop/static/js/runtime-main.1414abe6.js",
     "runtime-main.js.map": "/FrontEnd_Electronic_Shop/static/js/runtime-main.1414abe6.js.map",
     "static/css/2.99a36e3f.chunk.css": "/FrontEnd_Electronic_Shop/static/css/2.99a36e3f.chunk.css",
@@ -20,6 +20,6 @@
     "static/css/2.99a36e3f.chunk.css",
     "static/js/2.94091fd9.chunk.js",
     "static/css/main.80e9bcfe.chunk.css",
-    "static/js/main.5d88f041.chunk.js"
+    "static/js/main.ae2cb7e0.chunk.js"
   ]
 }
