@@ -6,21 +6,20 @@ import styles from './ProductRelated.module.css';
 import { Link } from 'react-router-dom';
 function ProductRelated(props) {
   const [products, setProducts] = useState([]);
-  // const filters = {
-  //   _limit: 5,
-  //   _start: 10,
-  // };
+
   useEffect(() => {
     const paramsString = {
       idProduct: props.proDetail[0],
       categoryName: props.proDetail[1],
     };
     console.log(paramsString);
-    const getApi = `https://electronic-api.azurewebsites.net/Product/ProductRelated`;
+    const getApi = `https://localhost:44306/Rating/${localStorage.getItem(
+      'userid'
+    )}`;
     axios.post(getApi, paramsString).then((response) => {
       setProducts(response.data);
     });
-  }, []);
+  }, [props.proDetail[0]]);
 
   return (
     <div className={styles}>
