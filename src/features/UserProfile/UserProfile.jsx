@@ -53,7 +53,7 @@ function UserProfile(props) {
 
   useEffect(() => {
     setId(localStorage.getItem('userid'));
-    const getApi = `http://tandn97-001-site1.itempurl.com/User/${id}`;
+    const getApi = `https://electronicshop-tandn.azurewebsites.net/User/${id}`;
     axios.get(getApi).then((response) => {
       setUser(response.data);
       setFullName(response.data.fullName);
@@ -77,7 +77,7 @@ function UserProfile(props) {
     formData.append('address', address);
     formData.append('imageFile', imageFile);
 
-    const getApi = `http://tandn97-001-site1.itempurl.com/User/Update/${id}`;
+    const getApi = `https://electronicshop-tandn.azurewebsites.net/User/Update/${id}`;
     axios.put(getApi, formData).then((response) => {
       if (response.status === 200) {
         setMess(true);

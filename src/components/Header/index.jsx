@@ -41,11 +41,11 @@ function NavBar() {
       localStorage.getItem('userid') !== null
     ) {
       setUserId(localStorage.getItem('userid'));
-      getApi = `http://tandn97-001-site1.itempurl.com/Cart/GetCountProductByIdUser/${localStorage.getItem(
+      getApi = `https://electronicshop-tandn.azurewebsites.net/Cart/GetCountProductByIdUser/${localStorage.getItem(
         'userid'
       )}`;
     } else {
-      getApi = `http://tandn97-001-site1.itempurl.com/Cart/GetCountProductByIdUser/-1`;
+      getApi = `https://electronicshop-tandn.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
     }
     axios.get(getApi).then((response) => {
       setCartItemsCount(response.data);

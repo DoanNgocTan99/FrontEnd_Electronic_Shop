@@ -29,7 +29,7 @@ function SelectFieldPayment(props) {
   useEffect(() => {
     (async () => {
       try {
-        const getApi = `http://tandn97-001-site1.itempurl.com/Payment`;
+        const getApi = `https://electronicshop-tandn.azurewebsites.net/Payment`;
         axios.get(getApi).then((response) => {
           setCategoryList(
             response.data.map((x) => ({

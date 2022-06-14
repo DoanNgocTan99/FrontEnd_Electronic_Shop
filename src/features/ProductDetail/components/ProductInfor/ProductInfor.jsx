@@ -28,7 +28,7 @@ function ProductInfor(props) {
   };
   useEffect(() => {
     if (id) {
-      const getApi = `http://tandn97-001-site1.itempurl.com/Product/${id}`;
+      const getApi = `https://electronicshop-tandn.azurewebsites.net/Product/${id}`;
       axios.get(getApi).then((response) => {
         setProduct(response.data);
       });
@@ -46,7 +46,7 @@ function ProductInfor(props) {
       userId: localStorage.getItem('userid'),
       productId: product.id,
     };
-    const url = `http://tandn97-001-site1.itempurl.com/Cart/Create`;
+    const url = `https://electronicshop-tandn.azurewebsites.net/Cart/Create`;
     axios.post(url, data).then((response) => {
       setOpen(true);
     });

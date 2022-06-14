@@ -29,7 +29,7 @@ function SelectFieldBrand(props) {
   useEffect(() => {
     (async () => {
       try {
-        const getApi = `http://tandn97-001-site1.itempurl.com/Brand`;
+        const getApi = `https://electronicshop-tandn.azurewebsites.net/Brand`;
         axios.get(getApi).then((response) => {
           setCategoryList(
             response.data.map((x) => ({

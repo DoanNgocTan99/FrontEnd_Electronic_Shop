@@ -181,7 +181,7 @@ function Dashboard() {
       toDate: toDate,
     };
     const exportExcel =
-      'http://tandn97-001-site1.itempurl.com/Statistical/GetFileExcel';
+      'https://electronicshop-tandn.azurewebsites.net/Statistical/GetFileExcel';
     axios.post(exportExcel, value).then((response) => {
       setOpen(true);
     });
@@ -193,19 +193,19 @@ function Dashboard() {
     setToDate(e.target.value);
   };
   useEffect(() => {
-    const getApi = 'http://tandn97-001-site1.itempurl.com/Statistical';
+    const getApi = 'https://electronicshop-tandn.azurewebsites.net/Statistical';
     axios.get(getApi).then((response) => {
       setStatistical(response.data);
     });
 
     const getApiTopCustomes =
-      'http://tandn97-001-site1.itempurl.com/Statistical/GetTopCustomers';
+      'https://electronicshop-tandn.azurewebsites.net/Statistical/GetTopCustomers';
     axios.get(getApiTopCustomes).then((response) => {
       setTopCustome(response.data);
     });
 
     const getApiLatestOrders =
-      'http://tandn97-001-site1.itempurl.com/Statistical/GetLatestOrders';
+      'https://electronicshop-tandn.azurewebsites.net/Statistical/GetLatestOrders';
     axios.get(getApiLatestOrders).then((response) => {
       setLatestOrders(response.data);
     });

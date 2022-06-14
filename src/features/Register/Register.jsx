@@ -32,7 +32,7 @@ function Register(props) {
       fullName: fullName,
     };
 
-    const getApi = `http://tandn97-001-site1.itempurl.com/Accounts/register`;
+    const getApi = `https://electronicshop-tandn.azurewebsites.net/Accounts/register`;
     axios.post(getApi, value).then((response) => {
       console.log(response);
       if (response.status === 200) {

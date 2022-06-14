@@ -16,14 +16,14 @@ function ProductRelated(props) {
       localStorage.getItem('userid') !== undefined &&
       localStorage.getItem('userid') !== null
     ) {
-      const getApi = `http://tandn97-001-site1.itempurl.com/Rating/${localStorage.getItem(
+      const getApi = `https://electronicshop-tandn.azurewebsites.net/Rating/${localStorage.getItem(
         'userid'
       )}`;
       axios.get(getApi).then((response) => {
         setProducts(response.data);
       });
     } else {
-      const getApi = `http://tandn97-001-site1.itempurl.com/Rating/1`;
+      const getApi = `https://electronicshop-tandn.azurewebsites.net/Rating/1`;
       axios.get(getApi).then((response) => {
         setProducts(response.data);
       });

@@ -28,7 +28,7 @@ function Product(props) {
   const pageCount = Math.ceil(productFilter.length / limit);
 
   useEffect(() => {
-    const getApi = 'http://tandn97-001-site1.itempurl.com/Product';
+    const getApi = 'https://electronicshop-tandn.azurewebsites.net/Product';
     axios.get(getApi).then((response) => {
       setProduct(response.data);
       setProductFilter(response.data);

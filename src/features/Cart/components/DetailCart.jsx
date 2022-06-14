@@ -79,7 +79,7 @@ function DetailCart({ onRemove = null, onChange = null }) {
     setOpen(false);
   };
   useEffect(() => {
-    const getApi = `http://tandn97-001-site1.itempurl.com/Cart/GetListCartByIdUser/${id}`;
+    const getApi = `https://electronicshop-tandn.azurewebsites.net/Cart/GetListCartByIdUser/${id}`;
     axios.get(getApi).then((response) => {
       setCartItems(response.data);
       onChange(response.data);
@@ -87,7 +87,7 @@ function DetailCart({ onRemove = null, onChange = null }) {
   }, []);
 
   const handleRemoveItem = (productId) => {
-    const getApi = `http://tandn97-001-site1.itempurl.com/Cart/Delete?id=${productId}`;
+    const getApi = `https://electronicshop-tandn.azurewebsites.net/Cart/Delete?id=${productId}`;
     axios.delete(getApi).then((response) => {
       setOpen(true);
     });

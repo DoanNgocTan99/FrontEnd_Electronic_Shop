@@ -42,9 +42,9 @@ function NavBar(props) {
   //   setAvt(localStorage.getItem('avarta'));
   //   var getApi = '';
   //   if (userId !== undefined) {
-  //     getApi = `http://tandn97-001-site1.itempurl.com/Cart/GetCountProductByIdUser/${userId}`;
+  //     getApi = `https://electronicshop-tandn.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
   //   } else {
-  //     getApi = `http://tandn97-001-site1.itempurl.com/Cart/GetCountProductByIdUser/-1`;
+  //     getApi = `https://electronicshop-tandn.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
   //   }
   //   axios.get(getApi).then((response) => {
   //     CheckLogin();
@@ -58,10 +58,10 @@ function NavBar(props) {
     if (props.count === undefined) {
       if (userId === undefined) {
         var getApi = '';
-        getApi = `http://tandn97-001-site1.itempurl.com/Cart/GetCountProductByIdUser/${userId}`;
+        getApi = `https://electronicshop-tandn.azurewebsites.net/Cart/GetCountProductByIdUser/${userId}`;
       } else {
         console.log('response.data');
-        getApi = `http://tandn97-001-site1.itempurl.com/Cart/GetCountProductByIdUser/-1`;
+        getApi = `https://electronicshop-tandn.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
       }
       axios.get(getApi).then((response) => {
         setCartItemsCount(response.data);
