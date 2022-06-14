@@ -33,7 +33,6 @@ function NavBar() {
     }
   };
   useEffect(() => {
-    debugger;
     setRole(localStorage.getItem('role'));
     setAvt(localStorage.getItem('avarta'));
     var getApi = '';
@@ -42,11 +41,11 @@ function NavBar() {
       localStorage.getItem('userid') !== null
     ) {
       setUserId(localStorage.getItem('userid'));
-      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${localStorage.getItem(
+      getApi = `http://tandn97-001-site1.itempurl.com/Cart/GetCountProductByIdUser/${localStorage.getItem(
         'userid'
       )}`;
     } else {
-      getApi = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
+      getApi = `http://tandn97-001-site1.itempurl.com/Cart/GetCountProductByIdUser/-1`;
     }
     axios.get(getApi).then((response) => {
       setCartItemsCount(response.data);

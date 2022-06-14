@@ -53,7 +53,7 @@ function TotalCost(props) {
   const [namePayment, setNamePayment] = useState('');
   useEffect(() => {
     (async () => {
-      const getApi = `https://electronic-api.azurewebsites.net/Payment`;
+      const getApi = `http://tandn97-001-site1.itempurl.com/Payment`;
       axios.get(getApi).then((response) => {
         response.data.map((e) => listPayment.push(e.name));
       });
@@ -69,10 +69,10 @@ function TotalCost(props) {
       total: total,
       payment: namePayment,
     };
-    const getApi = `https://electronic-api.azurewebsites.net/Orders`;
+    const getApi = `http://tandn97-001-site1.itempurl.com/Orders`;
     axios.post(getApi, data).then((response) => {
       if (response.data === 'Đặt thành công sản phẩm') {
-        const getApiDel = `https://electronic-api.azurewebsites.net/Cart/Delete?id=${props.products[0]?.userId}`;
+        const getApiDel = `http://tandn97-001-site1.itempurl.com/Cart/Delete?id=${props.products[0]?.userId}`;
         axios.delete(getApiDel, data).then((response) => {
           console.log(response.data);
         });

@@ -29,7 +29,7 @@ function ProductTotal() {
   const classes = useStyles();
 
   useEffect(() => {
-    const getApi = `https://electronic-api.azurewebsites.net/Cart/CountProductInCart/${id}`;
+    const getApi = `http://tandn97-001-site1.itempurl.com/Cart/CountProductInCart/${id}`;
     axios.get(getApi).then((response) => {
       setCartItemsCount(response.data);
     });

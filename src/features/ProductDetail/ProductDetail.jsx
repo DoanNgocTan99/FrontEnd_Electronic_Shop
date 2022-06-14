@@ -22,7 +22,7 @@ function ProductDetail(props) {
   useEffect(() => {
     var getApii = '';
     if (id) {
-      const getApi = `https://electronic-api.azurewebsites.net/Product/${id}`;
+      const getApi = `http://tandn97-001-site1.itempurl.com/Product/${id}`;
       axios.get(getApi).then((response) => {
         setproduct(response.data);
       });
@@ -31,14 +31,14 @@ function ProductDetail(props) {
         localStorage.getItem('userid') !== null
       ) {
         const userId = localStorage.getItem('userid');
-        getApii = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/${localStorage.getItem(
+        getApii = `http://tandn97-001-site1.itempurl.com/Cart/GetCountProductByIdUser/${localStorage.getItem(
           'userid'
         )}`;
         axios.get(getApii).then((response) => {
           setCount(response.data);
         });
       } else {
-        getApii = `https://electronic-api.azurewebsites.net/Cart/GetCountProductByIdUser/-1`;
+        getApii = `http://tandn97-001-site1.itempurl.com/Cart/GetCountProductByIdUser/-1`;
         axios.get(getApii).then((response) => {
           setCount(response.data);
         });

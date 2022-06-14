@@ -109,7 +109,7 @@ function Category() {
     (async () => {
       try {
         const list = await categoryApi.getAll();
-        // const getApi = 'https://electronic-api.azurewebsites.net/Product';
+        // const getApi = 'http://tandn97-001-site1.itempurl.com/Product';
         // axios.get(getApi).then((response) => {});
         setCategoryList(
           list.map((x) => ({

@@ -181,7 +181,7 @@ function Dashboard() {
       toDate: toDate,
     };
     const exportExcel =
-      'https://electronic-api.azurewebsites.net/Statistical/GetFileExcel';
+      'http://tandn97-001-site1.itempurl.com/Statistical/GetFileExcel';
     axios.post(exportExcel, value).then((response) => {
       setOpen(true);
     });
@@ -193,19 +193,19 @@ function Dashboard() {
     setToDate(e.target.value);
   };
   useEffect(() => {
-    const getApi = 'https://electronic-api.azurewebsites.net/Statistical';
+    const getApi = 'http://tandn97-001-site1.itempurl.com/Statistical';
     axios.get(getApi).then((response) => {
       setStatistical(response.data);
     });
 
     const getApiTopCustomes =
-      'https://electronic-api.azurewebsites.net/Statistical/GetTopCustomers';
+      'http://tandn97-001-site1.itempurl.com/Statistical/GetTopCustomers';
     axios.get(getApiTopCustomes).then((response) => {
       setTopCustome(response.data);
     });
 
     const getApiLatestOrders =
-      'https://electronic-api.azurewebsites.net/Statistical/GetLatestOrders';
+      'http://tandn97-001-site1.itempurl.com/Statistical/GetLatestOrders';
     axios.get(getApiLatestOrders).then((response) => {
       setLatestOrders(response.data);
     });

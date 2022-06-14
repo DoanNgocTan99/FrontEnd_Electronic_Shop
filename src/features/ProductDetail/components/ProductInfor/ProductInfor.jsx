@@ -28,7 +28,7 @@ function ProductInfor(props) {
   };
   useEffect(() => {
     if (id) {
-      const getApi = `https://electronic-api.azurewebsites.net/Product/${id}`;
+      const getApi = `http://tandn97-001-site1.itempurl.com/Product/${id}`;
       axios.get(getApi).then((response) => {
         setProduct(response.data);
       });
@@ -46,7 +46,7 @@ function ProductInfor(props) {
       userId: localStorage.getItem('userid'),
       productId: product.id,
     };
-    const url = `https://electronic-api.azurewebsites.net/Cart/Create`;
+    const url = `http://tandn97-001-site1.itempurl.com/Cart/Create`;
     axios.post(url, data).then((response) => {
       setOpen(true);
     });

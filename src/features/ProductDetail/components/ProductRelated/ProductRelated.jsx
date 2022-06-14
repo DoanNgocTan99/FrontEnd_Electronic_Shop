@@ -12,19 +12,18 @@ function ProductRelated(props) {
       idProduct: props.proDetail[0],
       categoryName: props.proDetail[1],
     };
-    debugger;
     if (
       localStorage.getItem('userid') !== undefined &&
       localStorage.getItem('userid') !== null
     ) {
-      const getApi = `https://electronic-api.azurewebsites.net/Rating/${localStorage.getItem(
+      const getApi = `http://tandn97-001-site1.itempurl.com/Rating/${localStorage.getItem(
         'userid'
       )}`;
       axios.get(getApi).then((response) => {
         setProducts(response.data);
       });
     } else {
-      const getApi = `https://electronic-api.azurewebsites.net/Rating/1`;
+      const getApi = `http://tandn97-001-site1.itempurl.com/Rating/1`;
       axios.get(getApi).then((response) => {
         setProducts(response.data);
       });
