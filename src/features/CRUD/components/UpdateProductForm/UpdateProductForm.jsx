@@ -69,7 +69,7 @@ function UpdateProductForm({ onSubmit, onRemove, product }) {
       .string()
       .required('Please enter product description.'),
 
-    brand: yup.string().required('PLease enter product brand'),
+    brandName: yup.string().required('PLease enter product brand'),
 
     salePrice: yup.string().required('Please enter product price.'),
   });
@@ -79,7 +79,7 @@ function UpdateProductForm({ onSubmit, onRemove, product }) {
       productName: product.name,
       productThumbnail: product.avt,
       productDescription: product.description,
-      brand: product.brand,
+      brandName: product.brandName,
       salePrice: product.product_Price,
       'category.id': product.categoryId,
     },
@@ -118,7 +118,7 @@ function UpdateProductForm({ onSubmit, onRemove, product }) {
         <InputField name="productName" label="Name" form={form} />
         <InputField name="productThumbnail" label="Thumbnail URL" form={form} />
         <InputField name="productDescription" label="Description" form={form} />
-        <InputField name="brand" label="Brand" form={form} />
+        <InputField name="brandName" label="Brand" form={form} />
         <InputField name="salePrice" label="Price" form={form} />
         <SelectField name="category.id" label="Category Type" form={form} />
         <div className={classes.submit}>

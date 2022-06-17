@@ -66,7 +66,7 @@ function ProductInfor(props) {
         </Alert>
       </Snackbar>
       <h4 className={styles.ProductName}>{product?.name}</h4>
-      <h5 className={styles.ProductBand}>{product?.brand}</h5>
+      <h5 className={styles.ProductBand}>{product?.brandName}</h5>
       <p className={styles.ProductDescription}>{product?.description}</p>
       <h5 className={styles.ProductBand}>Đánh giá: </h5>
       <Rating
@@ -78,7 +78,7 @@ function ProductInfor(props) {
       <div className={styles.ProductTable}>
         <div className={styles.ProductTableRow}>
           <span className={styles.ProductItem}>Brand</span>
-          <span className={styles.ProductItem}>{product?.brand}</span>
+          <span className={styles.ProductItem}>{product?.brandName}</span>
         </div>
         <div className={styles.ProductTableRow}>
           <span className={styles.ProductItem}>Loại</span>
