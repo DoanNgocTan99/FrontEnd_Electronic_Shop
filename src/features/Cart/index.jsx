@@ -54,7 +54,7 @@ function CartFeature() {
     axios.get(getApi).then((response) => {
       setCount(response.data);
     });
-  });
+  }, []);
   const handleRemoveFromCart = (productId) => {
     const action = removeFromCart(productId);
     dispatch(action);

@@ -51,7 +51,7 @@ function NavBar() {
       setCartItemsCount(response.data);
     });
     CheckLogin();
-  });
+  }, []);
   const handleLogout = () => {
     setIsLogin(false);
     const action = logoutUser();
