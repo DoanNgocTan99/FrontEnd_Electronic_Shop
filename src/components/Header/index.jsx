@@ -65,6 +65,10 @@ function NavBar() {
   const handleAdminPage = () => {
     history.push('/admin');
   };
+
+  const handleOrderPage = () => {
+    history.push('/purchasedOrders');
+  };
   const handleUserProfile = () => {
     history.push('/userProfile');
   };
@@ -102,7 +106,7 @@ function NavBar() {
                   </div>
                 </li>
                 <li className={styles.nav__menuitems}>
-                  <div href="">Đơn mua</div>
+                  <div onClick={handleOrderPage}>Đơn mua</div>
                 </li>
                 {role === 'ADMIN' ? (
                   <li className={styles.nav__menuitems}>

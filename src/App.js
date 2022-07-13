@@ -10,6 +10,8 @@ import UserLoginPage from './features/Auth/pages/UserLoginPage';
 import Product from './features/Product/product.jsx';
 import ProductDetail from './features/ProductDetail/ProductDetail';
 import UserProfile from './features/UserProfile/UserProfile';
+import PurchasedOrders from 'features/PurchasedOrders';
+
 function App() {
   const adminState = useSelector((state) => state.admin);
   return (
@@ -21,6 +23,7 @@ function App() {
         <Route path="/productDetails/:id" exact component={ProductDetail} />
         <Route path="/userProfile" component={UserProfile} />
         <Route path="/register" component={Register} />
+        <Route path="/purchasedOrders" component={PurchasedOrders} />
 
         {adminState.current?.role === 'ADMIN' && (
           <Route path="/admin" component={AdminFeature} />
